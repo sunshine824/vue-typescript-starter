@@ -3,7 +3,8 @@ declare namespace StoreState {
   export interface Login {
     username: string,
     password: string,
-    captcha: string
+    captcha: string,
+    uuid: string
   }
 
   //接口返回结构

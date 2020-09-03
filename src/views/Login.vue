@@ -57,6 +57,7 @@ import { login } from "@/api/users";
 import { Component, Vue } from "vue-property-decorator";
 import { FormModel, Row, Col, Button, Input } from "ant-design-vue";
 
+
 @Component({
   components: {
     AFormModel: FormModel,
@@ -68,6 +69,7 @@ import { FormModel, Row, Col, Button, Input } from "ant-design-vue";
   }
 })
 export default class Login extends Vue {
+  // initial data
   private labelCol: object = { span: 4 };
   private wrapperCol: object = { span: 18, offset: 3 };
   private captchaPath: string = "";
@@ -77,11 +79,11 @@ export default class Login extends Vue {
     password: [{ required: true, message: "密码不能为空", trigger: "blur" }],
     captcha: [{ required: true, message: "验证码不能为空", trigger: "blur" }]
   };
-  private dataForm: any = {
+  private dataForm: StoreState.Login = {
     username: "",
     password: "",
     captcha: "",
-    uuid:""
+    uuid: ""
   };
 
   mounted() {
@@ -90,14 +92,18 @@ export default class Login extends Vue {
       this.getCaptcha();
     });
   }
+
   //login提交
   private dataFormSubmit() {
     (this.$refs["dataForm"] as FormModel).validate(async (valid: boolean) => {
       if (valid) {
         try {
           let { data } = await login(this.dataForm);
+          //将token存储到store
           UserModule.SET_TOKEN(data.token);
+          //将token存储到sessionStorage
           setToken(data.token);
+          this.$router.push("/home");
         } catch (error) {
           this.getCaptcha();
         }

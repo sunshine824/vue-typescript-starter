@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { getToken } from "@/utils/token"
 import { Modal, message, notification } from 'ant-design-vue'
 
@@ -81,7 +81,7 @@ export function Patch(params: Params) {
 /**
  * 请求拦截
  */
-axios.interceptors.request.use((config: any) => {
+axios.interceptors.request.use((config: AxiosRequestConfig) => {
   config.headers.common['Authorization'] = getToken() // 请求头带上token
   config.baseURL = "/dbd-authority"
   return config
@@ -92,7 +92,7 @@ axios.interceptors.request.use((config: any) => {
 /**
  * 响应拦截
  */
-axios.interceptors.response.use((response) => {
+axios.interceptors.response.use((response: AxiosResponse) => {
   if (response.status == 201 || response.status == 200) {
     let msg: string = response.data.msg
     if (response.data.code == 401) {
