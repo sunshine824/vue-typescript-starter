@@ -10,7 +10,7 @@ import Es6Promise from 'es6-promise'
 Es6Promise.polyfill()
 
 Vue.config.productionTip = false
-
+Vue.prototype.$URL = window.config
 
 
 new Vue({

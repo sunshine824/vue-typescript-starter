@@ -1,19 +1,14 @@
 <template>
   <div id="app">
     <router-view />
-    <Button ref="btn" type="primary">按钮</Button>
   </div>
 </template>
 
 <script lang="ts">
-import { Button } from "ant-design-vue";
+import { UserModule } from "@/store/modules/user";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-@Component({
-  components: {
-    Button
-  }
-})
+@Component({})
 export default class App extends Vue {}
 </script>
 
