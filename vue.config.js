@@ -62,9 +62,8 @@ const vueConfig = {
         modifyVars: {
           // less vars，customize ant design theme
 
-          // 'primary-color': '#F5222D',
-          // 'link-color': '#F5222D',
-          'border-radius-base': '2px'
+          'primaryColor': '#1d1e1f',
+          'navThemeColor': '#1d1e1f'
         },
         // DO NOT REMOVE THIS LINE
         javascriptEnabled: true
