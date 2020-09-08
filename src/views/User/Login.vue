@@ -104,7 +104,7 @@ export default class Login extends Vue {
           UserModule.SET_TOKEN(data.token);
           //将token存储到sessionStorage
           setToken(data.token);
-          this.$router.push("/home");
+          this.$router.push("/control");
         } catch (error) {
           this.getCaptcha();
         }
