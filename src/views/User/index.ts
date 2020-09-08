@@ -1,5 +1,5 @@
 export module User {
-  //登录参数
+  //登录请求参数
   export interface Login {
     username: string,
     password: string,
