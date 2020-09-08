@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import uuid from "uuid/v1";
+import {User} from "./index"
 import { initBg } from "@/utils/methods";
 import { setToken } from "@/utils/token";
 import { UserModule } from "@/store/modules/user";
@@ -79,7 +80,7 @@ export default class Login extends Vue {
     password: [{ required: true, message: "密码不能为空", trigger: "blur" }],
     captcha: [{ required: true, message: "验证码不能为空", trigger: "blur" }]
   };
-  private dataForm: StoreState.Login = {
+  private dataForm: User.Login = {
     username: "",
     password: "",
     captcha: "",

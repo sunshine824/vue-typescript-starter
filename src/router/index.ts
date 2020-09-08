@@ -12,7 +12,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/login',
     name: 'login',
-    component: resolve => require(['@/views/Login'], resolve)
+    component: resolve => require(['@/views/User/Login'], resolve)
   }
 ]
 

@@ -2,18 +2,12 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { getToken } from "@/utils/token"
 import { Modal, message, notification } from 'ant-design-vue'
 
-//请求参数结构
-interface Params {
-  url: string,
-  data: object | string,
-  [propName: string]: any
-}
 
 /**
  * post请求封装
  * @param params
  */
-export function Post(params: Params) {
+export function Post(params: StoreState.FetchParams) {
   return axios({
     ...params,
     method: 'post',
@@ -30,7 +24,7 @@ export function Post(params: Params) {
  * delete请求封装
  * @param params
  */
-export function Delete(params: Params) {
+export function Delete(params: StoreState.FetchParams) {
   return axios({
     ...params,
     method: 'delete',
@@ -47,7 +41,7 @@ export function Delete(params: Params) {
  * get请求封装
  * @param params
  */
-export function Get(params: Params) {
+export function Get(params: StoreState.FetchParams) {
   return axios({
     ...params,
     method: 'get',
@@ -64,7 +58,7 @@ export function Get(params: Params) {
  * patch请求封装
  * @param params
  */
-export function Patch(params: Params) {
+export function Patch(params: StoreState.FetchParams) {
   return axios({
     ...params,
     method: 'patch',
