@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import VueRouter, { RouteConfig, RawLocation, Route } from 'vue-router'
-import { BasicLayout } from "@/layouts"
+import VueRouter, { RawLocation, Route, RouterOptions } from 'vue-router'
+import { mainRoutes, baseRoutes } from './router.config'
 
 //防止路由重复点击报错
 const originalPush: any = VueRouter.prototype.push
@@ -10,32 +10,14 @@ VueRouter.prototype.push = function push(location: RawLocation): Promise<Route> 
 
 Vue.use(VueRouter)
 
-const routes: RouteConfig[] = [
-  {
-    path: '/',
-    name: 'Home',
-    redirect: '/login',
-    component: BasicLayout,
-    children: [
-      {
-        path: '/control',
-        name: 'control',
-        component: resolve => require(['@/views/control/index'], resolve),
-        meta: { title: '控制台', keepAlive: false, hidden: false }
-      }
-    ]
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: resolve => require(['@/views/user/Login'], resolve)
-  }
-]
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  scrollBehavior(to, from, savedPosition) {
+    return savedPosition || { x: 0, y: 0 }
+  },
+  isAddDynamicMenuRoutes: false, // 是否已经添加动态(菜单)路由
+  routes: [mainRoutes].concat(baseRoutes)
 })
 
 export default router

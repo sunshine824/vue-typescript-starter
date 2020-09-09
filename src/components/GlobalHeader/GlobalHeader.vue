@@ -11,7 +11,7 @@
           mode="horizontal"
           :style="{ lineHeight: '54px' }"
         >
-          <template v-for="item in menus">
+          <template v-for="item in menus" v-if="!item.meta['hidden']">
             <template v-if="!item.children || !item.children.length">
               <a-menu-item :key="item.path">
                 <span>{{item.meta['title']}}</span>
@@ -52,17 +52,19 @@ import { Layout, Menu } from "ant-design-vue";
 })
 export default class GlobalHeader extends Vue {
   private activeRoute: string = "";
+  private menus: RouteConfig[] = [];
 
   mounted() {
+    this.getMenus()
     this.routeChange(this.$route, this.$route);
   }
 
   //获取路由列表
-  get menus() {
+  private getMenus() {
     let routes = this.$router.options.routes || [];
-    return routes.reduce((item: any) => {
+    routes.map((item: any) => {
       if (item.path == "/") {
-        return item.children;
+        this.menus = item.children
       }
     });
   }
@@ -83,7 +85,7 @@ export default class GlobalHeader extends Vue {
 .header-animat {
   position: relative;
   z-index: 100;
-  .right-con{
+  .right-con {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;

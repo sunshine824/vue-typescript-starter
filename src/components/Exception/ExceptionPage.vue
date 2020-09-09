@@ -14,8 +14,19 @@
 import types from "./type";
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 
-export default class GlobalHeader extends Vue {
+@Component
+export default class ExceptionPage extends Vue {
+  @Prop({
+    type: String,
+    required: false,
+    default: "404"
+  })
+  type!: string;
 
+  private config: object = types;
+  private handleToHome() {
+    this.$router.push("/");
+  }
 }
 </script>
 <style lang="less">
