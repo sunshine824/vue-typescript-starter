@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { getToken } from "@/utils/token"
+import { getToken, removeToken } from "@/utils/token"
 import { Modal, message, notification } from 'ant-design-vue'
+import router from '@/router';
 
 
 /**
@@ -77,6 +78,7 @@ export function Patch(params: StoreState.FetchParams) {
  */
 axios.interceptors.request.use((config: AxiosRequestConfig) => {
   config.headers.common['Authorization'] = getToken() // 请求头带上token
+  config.headers.common['token'] = getToken()
   config.baseURL = "/dbd-authority"
   return config
 }, error => {
@@ -94,8 +96,10 @@ axios.interceptors.response.use((response: AxiosResponse) => {
         title: 'token出错',
         content: "token失效，请重新登录！",
         onOk: () => {
-          let url: string = `${window.config}?token =${getToken()}`
-          window.location.href = url
+          // let url: string = `${window.config.loginUrl}?token =${getToken()}`
+          // window.location.href = url
+          removeToken()
+          router.push('/login')
         }
       })
     } else if (response.data.code == 200) {

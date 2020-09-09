@@ -78,7 +78,7 @@ const vueConfig = {
     proxy: {
       //配置权限代理
       '/dbd-authority': {
-        target: 'http://product.cdjiamigu.com:9000/dbd-authority',
+        target: 'http://product.cdjiamigu.com:8003/dbd-authority',
         changeOrigin: true,
         pathRewrite: {
           '^/dbd-authority': ''

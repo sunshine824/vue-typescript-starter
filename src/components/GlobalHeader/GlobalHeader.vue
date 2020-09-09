@@ -65,6 +65,7 @@ export default class GlobalHeader extends Vue {
     routes.map((item: any) => {
       if (item.path == "/") {
         this.menus = item.children
+        console.log(this.menus)
       }
     });
   }

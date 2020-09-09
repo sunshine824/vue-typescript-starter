@@ -13,4 +13,16 @@ declare namespace StoreState {
     data: object | string,
     [propName: string]: any
   }
+
+  //权限返回实体
+  export interface Role {
+    icon: string,
+    list: Role[],
+    menuId: number,
+    name: string,
+    perms: string,
+    requestPath: string,
+    url: string,
+    [propName: string]: any
+  }
 }

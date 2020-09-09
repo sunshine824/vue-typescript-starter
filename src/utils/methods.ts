@@ -169,3 +169,11 @@ export const initBg = () => {
     pointerY = y;
   }
 }
+
+/**
+ * URL地址
+ * @param {*} s
+ */
+export const isURL = (s: string) => {
+  return /^http[s]?:\/\/.*/.test(s)
+}
