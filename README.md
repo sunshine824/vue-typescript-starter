@@ -9,11 +9,10 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 
 ## 目录结构
   .
-  ├── README.md
-  ****
-  ├── babel.config.js
-  ├── package-lock.json
-  ├── package.json
+  ├── README.md  
+  ├── babel.config.js  
+  ├── package-lock.json  
+  ├── package.json  
   ├── public
   │   ├── config.js
   │   ├── favicon.ico
