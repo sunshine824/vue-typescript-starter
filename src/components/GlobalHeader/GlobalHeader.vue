@@ -28,8 +28,6 @@
           <a-menu-item></a-menu-item>
         </a-menu>
         <div class="userInfo">
-          <img src="../../assets/user.png" class="userHead" />
-          <span class="userName">admin</span>
           <slot name="userInfo"></slot>
         </div>
       </div>
@@ -40,14 +38,15 @@
 <script lang="ts">
 import { RouteConfig, Route } from "vue-router";
 import { Component, Vue, Watch } from "vue-property-decorator";
-import { Layout, Menu } from "ant-design-vue";
+import { Layout, Menu, Dropdown } from "ant-design-vue";
 
 @Component({
   components: {
     ALayoutHeader: Layout.Header,
     AMenu: Menu,
     AMenuItem: Menu.Item,
-    AMenuItemGroup: Menu.ItemGroup
+    AMenuItemGroup: Menu.ItemGroup,
+    ADropdown: Dropdown,
   }
 })
 export default class GlobalHeader extends Vue {
@@ -55,7 +54,7 @@ export default class GlobalHeader extends Vue {
   private menus: RouteConfig[] = [];
 
   mounted() {
-    this.getMenus()
+    this.getMenus();
     this.routeChange(this.$route, this.$route);
   }
 
@@ -64,8 +63,8 @@ export default class GlobalHeader extends Vue {
     let routes = this.$router.options.routes || [];
     routes.map((item: any) => {
       if (item.path == "/") {
-        this.menus = item.children
-        console.log(this.menus)
+        this.menus = item.children;
+        console.log(this.menus);
       }
     });
   }
@@ -143,23 +142,9 @@ export default class GlobalHeader extends Vue {
     flex-flow: row nowrap;
     align-items: center;
     justify-content: flex-end;
-    .userHead {
-      width: 30px;
-      height: 30px;
-      margin-right: 10px;
-    }
-    .userName {
+    .ant-dropdown-trigger{
+      height:54px;
       line-height: 54px;
-      font-size: 16px;
-      color: rgba(255, 255, 255, 0.85);
-    }
-    .icon {
-      line-height: 54px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #fff;
-      margin-left: 10px;
-      cursor: pointer;
     }
   }
 }
