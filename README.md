@@ -1,5 +1,5 @@
 
-## 简介
+### 简介
 
 此项目是基于 Vue 全家桶 + TypeScript + Antd 搭建简易脚手架。
 
@@ -7,7 +7,7 @@ TypeScript 具有类型系统，且是 JavaScript 的超集，TypeScript 在 201
 
 Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 年 TypeScript 将会更加普及，能够熟练掌握 TS，并使用 TS 开发过项目，将更加成为前端开发者的优势。
 
-## 目录结构
+### 目录结构
 ```bash
 .  
 ├── README.md   
@@ -35,14 +35,14 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 └── vue.config.js   
 ```
   
-## 功能
+### 功能
 
-### 已经完成功能
+#### 已经完成功能
 
 - [x] 登录  
 - [x] 动态路由
 
-### 待优化或者实现
+#### 待优化或者实现
 
 刚开始学习 TypeScript，对 TS 的运用还有待提高，后续会触入更多的 TypeScript 特性。
 
@@ -50,7 +50,7 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 - [ ] 更多 TypeScript 的优化技巧
 - [ ] 服务器渲染 SSR
 
-## 相关包版本号
+### 相关包版本号
 
 所有技术都是当前最新的。
 
@@ -63,7 +63,7 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 - axios：0.19.0
 - vuex-module-decorators： ^0.17.0
 
-## Build Setup 
+### Build Setup 
 
 ``` 
  # clone
