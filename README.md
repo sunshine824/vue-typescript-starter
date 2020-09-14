@@ -8,31 +8,33 @@ TypeScript 具有类型系统，且是 JavaScript 的超集，TypeScript 在 201
 Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 年 TypeScript 将会更加普及，能够熟练掌握 TS，并使用 TS 开发过项目，将更加成为前端开发者的优势。
 
 ## 目录结构
-  .
-  ├── README.md  
-  ├── babel.config.js  
-  ├── package-lock.json  
-  ├── package.json  
-  ├── public
-  │   ├── config.js
-  │   ├── favicon.ico
-  │   └── index.html
-  ├── src
-  │   ├── App.vue
-  │   ├── api                     //接口管理模块
-  │   ├── assets                  //静态资源模块
-  │   ├── components              //组件包
-  │   ├── layouts                 //自定义布局
-  │   ├── main.ts                 //入口文件
-  │   ├── public                  //公共资源模块
-  │   ├── router                  //路由
-  │   ├── store                   //vuex状态库
-  │   ├── types                   //声明文件
-  │   ├── utils                   //公共方法模块
-  │   └── views                   //视图
-  ├── tsconfig.json
-  └── vue.config.js
-
+```bash
+.  
+├── README.md   
+├── babel.config.js   
+├── package-lock.json   
+├── package.json   
+├── public  
+│   ├── config.js  
+│   ├── favicon.ico  
+│   └── index.html  
+├── src
+│   ├── App.vue   
+│   ├── api                     # 接口管理模块  
+│   ├── assets                  # 静态资源模块  
+│   ├── components              # 组件包  
+│   ├── layouts                 # 公共自定义布局  
+│   ├── main.ts                 # 入口文件  
+│   ├── public                  # 公共资源模块  
+│   ├── router                  # 路由   
+│   ├── store                   # vuex状态库  
+│   ├── types                   # 声明文件   
+│   ├── utils                   # 公共方法模块  
+│   └── views                   # 视图包
+├── tsconfig.json
+└── vue.config.js   
+```
+  
 ## 功能
 
 ### 已经完成功能
