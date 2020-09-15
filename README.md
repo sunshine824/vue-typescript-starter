@@ -66,7 +66,7 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 ### Build Setup 
 
 ``` 
- # clone
+# clone
 git clone https://github.com/sunshine824/vue-typescript-cli.git
 ```
 
