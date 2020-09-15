@@ -14,4 +14,5 @@ export default class App extends Vue {}
 
 <style lang="less">
 @import "./public/css/base.css";
+@import "./public/css/init.less";
 </style>

@@ -25,4 +25,14 @@ declare namespace StoreState {
     url: string,
     [propName: string]: any
   }
+
+  //layout布局
+  export interface Layout {
+    labelCol: {
+      span: number
+    },
+    wrapperCol: {
+      span: number
+    }
+  }
 }

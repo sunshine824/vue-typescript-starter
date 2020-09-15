@@ -1,7 +1,7 @@
 <template>
   <div class="header-animat">
     <a-layout-header>
-      <div class="logo" style="margin-top:-15px;">
+      <div class="logo" @click="goToHome" style="margin-top:-15px;">
         <img src="../../assets/logo.png" />
       </div>
       <div class="right-con">
@@ -37,7 +37,7 @@
 
 <script lang="ts">
 import { RouteConfig, Route } from "vue-router";
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch, Emit } from "vue-property-decorator";
 import { Layout, Menu, Dropdown } from "ant-design-vue";
 
 @Component({
@@ -46,7 +46,7 @@ import { Layout, Menu, Dropdown } from "ant-design-vue";
     AMenu: Menu,
     AMenuItem: Menu.Item,
     AMenuItemGroup: Menu.ItemGroup,
-    ADropdown: Dropdown,
+    ADropdown: Dropdown
   }
 })
 export default class GlobalHeader extends Vue {
@@ -64,7 +64,6 @@ export default class GlobalHeader extends Vue {
     routes.map((item: any) => {
       if (item.path == "/") {
         this.menus = item.children;
-        console.log(this.menus);
       }
     });
   }
@@ -73,6 +72,10 @@ export default class GlobalHeader extends Vue {
   private handleMenuItem(item: any) {
     this.$router.push(item.key);
   }
+
+  //跳转到home
+  @Emit("goToHome")
+  goToHome() {}
 
   @Watch("$route")
   routeChange(val: Route, oldVal: Route): void {
@@ -142,8 +145,8 @@ export default class GlobalHeader extends Vue {
     flex-flow: row nowrap;
     align-items: center;
     justify-content: flex-end;
-    .ant-dropdown-trigger{
-      height:54px;
+    .ant-dropdown-trigger {
+      height: 54px;
       line-height: 54px;
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <a-layout class="layout">
     <!-- layout header -->
-    <global-header>
+    <global-header @goToHome="goToHome">
       <div class="userBox" slot="userInfo">
         <a-dropdown>
           <div>
@@ -10,10 +10,11 @@
           </div>
           <a-menu slot="overlay">
             <a-menu-item key="0">
-              <span>修改密码</span>
+              <span @click="handlePass">修改密码</span>
             </a-menu-item>
+            <a-menu-divider />
             <a-menu-item key="1">
-              <span>退出</span>
+              <span @click="userLoyout">退出</span>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
@@ -24,13 +25,18 @@
     <a-layout-content>
       <router-view />
     </a-layout-content>
+
+    <!-- update password -->
+    <update-pass ref="updatePass"></update-pass>
   </a-layout>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { logout } from "@/api/users";
+import { Component, Vue, Ref } from "vue-property-decorator";
 import GlobalHeader from "@/components/GlobalHeader";
-import { Layout, Dropdown, Menu, Icon } from "ant-design-vue";
+import UpdatePass from "../views/User/updatePass.vue";
+import { Layout, Dropdown, Menu, Icon, Modal } from "ant-design-vue";
 
 @Component({
   components: {
@@ -39,10 +45,42 @@ import { Layout, Dropdown, Menu, Icon } from "ant-design-vue";
     GlobalHeader,
     ADropdown: Dropdown,
     AMenu: Menu,
-    AMenuItem: Menu.Item
+    AMenuItem: Menu.Item,
+    AMenuDivider: Menu.Divider,
+    UpdatePass
   }
 })
-export default class ClassName extends Vue {}
+export default class ClassName extends Vue {
+  @Ref() readonly updatePass!: UpdatePass;
+
+  private goToHome() {
+    this.$router.push("/");
+  }
+
+  //显示修改密码框
+  private handlePass() {
+    this.updatePass.show()
+  }
+
+  //用户登出
+  private userLoyout() {
+    Modal.confirm({
+      title: "确定进行[退出]操作?",
+      okText: "确定",
+      cancelText: "取消",
+      onOk: async () => {
+        let { code } = await logout({});
+        if (code == 200) {
+          sessionStorage.clear();
+          this.$router.push("/login");
+        }
+      },
+      onCancel: () => {
+        console.log("Cancel");
+      }
+    });
+  }
+}
 </script>
 
 <style lang="less" scope>

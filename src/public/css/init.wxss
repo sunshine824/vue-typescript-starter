@@ -1,0 +1,113 @@
+.my-table .ant-table-thead > tr > th,
+.my-table .ant-table-tbody > tr > td {
+  padding: 10px 10px;
+  background: #181a1d;
+  border-bottom: 0px solid #3e3e3e;
+  color: #fff;
+}
+.my-table .ant-table-tbody > tr > td {
+  padding: 6px 10px;
+}
+.my-table .ant-table-thead > tr:hover.ant-table-row-selected > td,
+.my-table .ant-table-tbody > tr:hover.ant-table-row-selected > td {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+.my-table .ant-table-tbody > tr.ant-table-row-selected td {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+.my-table .ant-table-thead > tr:first-child > th:last-child,
+.my-table .ant-table-thead > tr:first-child > th:first-child {
+  border-radius: 0;
+}
+.my-table .ant-form-item label {
+  color: rgba(255, 255, 255, 0.8);
+}
+.my-table .ant-table-fixed-header > .ant-table-content > .ant-table-scroll > .ant-table-body {
+  background: #181a1d;
+}
+.my-table .ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
+.my-table .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
+.my-table .ant-table-thead > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
+.my-table .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
+  background: rgba(0, 0, 0, 0.4);
+}
+.my-table .ant-table-fixed-header .ant-table-scroll .ant-table-header {
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+.my-table .ant-table-placeholder {
+  color: #fff;
+  background: #272727;
+  border-top: 1px solid #3e3e3e;
+  border-bottom: 1px solid #3e3e3e;
+}
+.my-table .ant-empty-normal {
+  color: #fff;
+}
+.my-tabs .ant-tabs-bar {
+  border-bottom: 1px solid #3e3e3e;
+}
+.my-tabs .ant-tabs-nav-container {
+  margin-bottom: -5px;
+}
+.my-tabs .ant-tabs-card-bar .ant-tabs-tab {
+  height: 36px !important;
+  margin: 0;
+  padding: 0 16px;
+  line-height: 34px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0) !important;
+  border: 1px solid #3e3e3e !important;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.my-tabs .ant-tabs-card-bar .ant-tabs-tab-active {
+  color: #fff !important;
+  background: #0972fe !important;
+}
+.my-modal .ant-modal .ant-modal-content {
+  padding: 10px 10px;
+  background: #000;
+  color: #fff;
+}
+.my-modal .ant-modal .ant-modal-content .ant-modal-close {
+  width: 47px;
+  height: 47px;
+  line-height: 39px;
+}
+.my-modal .ant-modal .ant-modal-content .ant-modal-close .ant-modal-close-x {
+  font-size: 15px;
+  color: #fff;
+}
+.my-modal .ant-modal .ant-modal-header {
+  background: rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgba(242, 242, 242, 0.2);
+  border-radius: 4px 4px 0 0;
+  padding: 8px 16px !important;
+}
+.my-modal .ant-modal .ant-modal-header .ant-modal-title {
+  color: #fff;
+  font-size: 15px;
+}
+.my-form .ant-form-item-label > label {
+  color: #fff !important;
+  font-size: 14px !important;
+}
+.my-form .ant-form-item-control textarea .ant-input,
+.my-form .ant-input,
+.my-form .ant-input-affix-wrapper .ant-input,
+.my-form .ant-select .ant-select-selection {
+  background: rgba(51, 55, 59, 0.1);
+  border: 1px solid rgba(51, 55, 59, 0.9);
+  color: #fff;
+}
+.my-form .has-error .ant-input,
+.my-form .has-error .ant-input:hover {
+  background-color: transparent;
+}
+.my-form .ant-input[disabled] {
+  color: #fff;
+  background-color: #303030;
+}

@@ -174,6 +174,18 @@ export const initBg = () => {
  * URL地址
  * @param {*} s
  */
-export const isURL = (s: string) => {
+export const isURL = (s: string): boolean => {
   return /^http[s]?:\/\/.*/.test(s)
+}
+
+//验证密码强度
+export const checkPassModes = (value: string): number => {
+  let modes: number = 0;
+  //正则表达式验证符合要求的
+  if (value.length < 1) return modes;
+  if (/\d/.test(value)) modes++; //数字
+  if (/[a-z]/.test(value)) modes++; //小写
+  if (/[A-Z]/.test(value)) modes++; //大写
+  if (/\W/.test(value)) modes++; //特殊字符
+  return modes;
 }

@@ -62,7 +62,11 @@ router.beforeEach(async (to, from, next: any) => {
         console.log(`%c${error} 请求菜单列表和权限失败，跳转至登录页！！`, 'color:blue')
       }
     } else {
-      next()
+      if (to.path == '/' || to.path == '/login') {
+        next(from)
+      } else {
+        next()
+      }
     }
   } else {
     router.options.isAddDynamicMenuRoutes = false
@@ -110,7 +114,7 @@ function fnAddDynamicMenuRoutes(menuList: StoreState.Role[], routes: RouteConfig
     mainRoutes.children = routes.concat(mainRoutes.children as RouteConfig[])
     router.addRoutes([
       mainRoutes,
-      { path: '*', redirect: { name: '404' } }
+      { path: '*', redirect: { name: '403' } }
     ])
     return mainRoutes.children
   }

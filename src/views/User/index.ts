@@ -6,4 +6,12 @@ export module User {
     captcha: string,
     uuid: string
   }
+
+  //修改密码
+  export interface UpdatePass {
+    userName: string,
+    password: string,
+    newPassword: string,
+    confirmPassword: string
+  }
 }
