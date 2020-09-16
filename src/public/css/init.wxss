@@ -81,6 +81,12 @@
   font-size: 15px;
   color: #fff;
 }
+.my-modal .ant-modal .ant-modal-content .ant-modal-confirm-title {
+  color: #fff;
+}
+.my-modal .ant-modal .ant-modal-content .ant-modal-confirm-content {
+  color: rgba(255, 255, 255, 0.8);
+}
 .my-modal .ant-modal .ant-modal-header {
   background: rgba(0, 0, 0, 0);
   border-bottom: 1px solid rgba(242, 242, 242, 0.2);

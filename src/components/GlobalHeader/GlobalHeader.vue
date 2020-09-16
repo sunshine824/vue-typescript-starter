@@ -5,28 +5,7 @@
         <img src="../../assets/logo.png" />
       </div>
       <div class="right-con">
-        <a-menu
-          :selected-keys="[activeRoute]"
-          @click="handleMenuItem"
-          mode="horizontal"
-          :style="{ lineHeight: '54px' }"
-        >
-          <template v-for="item in menus" v-if="!item.meta['hidden']">
-            <template v-if="!item.children || !item.children.length">
-              <a-menu-item :key="item.path">
-                <span>{{item.meta['title']}}</span>
-              </a-menu-item>
-            </template>
-            <template v-else>
-              <a-menu-item-group :key="item.name">
-                <a-menu-item v-for="(subItem, index) in item.children" :key="subItem.path">
-                  <span>{{subItem.meta['title']}}</span>
-                </a-menu-item>
-              </a-menu-item-group>
-            </template>
-          </template>
-          <a-menu-item></a-menu-item>
-        </a-menu>
+        <menus></menus>
         <div class="userInfo">
           <slot name="userInfo"></slot>
         </div>
@@ -39,48 +18,18 @@
 import { RouteConfig, Route } from "vue-router";
 import { Component, Vue, Watch, Emit } from "vue-property-decorator";
 import { Layout, Menu, Dropdown } from "ant-design-vue";
+import Menus from "./Menus.vue";
 
 @Component({
   components: {
     ALayoutHeader: Layout.Header,
-    AMenu: Menu,
-    AMenuItem: Menu.Item,
-    AMenuItemGroup: Menu.ItemGroup,
-    ADropdown: Dropdown
+    Menus
   }
 })
 export default class GlobalHeader extends Vue {
-  private activeRoute: string = "";
-  private menus: RouteConfig[] = [];
-
-  mounted() {
-    this.getMenus();
-    this.routeChange(this.$route, this.$route);
-  }
-
-  //获取路由列表
-  private getMenus() {
-    let routes = this.$router.options.routes || [];
-    routes.map((item: any) => {
-      if (item.path == "/") {
-        this.menus = item.children;
-      }
-    });
-  }
-
-  //路由跳转
-  private handleMenuItem(item: any) {
-    this.$router.push(item.key);
-  }
-
   //跳转到home
   @Emit("goToHome")
   goToHome() {}
-
-  @Watch("$route")
-  routeChange(val: Route, oldVal: Route): void {
-    this.activeRoute = val.path;
-  }
 }
 </script>
 

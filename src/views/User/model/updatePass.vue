@@ -48,9 +48,9 @@
 </template>
 
 <script lang="ts">
-import { User } from "./index";
+import { User } from "@/views/User";
 import { Component, Prop, Vue, Ref } from "vue-property-decorator";
-import { checkPassModes } from "../../utils/methods";
+import { checkPassModes } from "@/utils/methods";
 import { FormModel, Button, Input } from "ant-design-vue";
 
 @Component({

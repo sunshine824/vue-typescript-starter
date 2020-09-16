@@ -1,4 +1,4 @@
-import { Post, Get } from "@/public/js/fetch"
+import { Post, Get } from "@/utils/fetch"
 import qs from 'qs'
 
 //用户登录

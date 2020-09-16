@@ -10,11 +10,11 @@
           </div>
           <a-menu slot="overlay">
             <a-menu-item key="0">
-              <span @click="handlePass">修改密码</span>
+              <p @click="handlePass">修改密码</p>
             </a-menu-item>
             <a-menu-divider />
             <a-menu-item key="1">
-              <span @click="userLoyout">退出</span>
+              <p @click="userLoyout">退出</p>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
@@ -35,7 +35,7 @@
 import { logout } from "@/api/users";
 import { Component, Vue, Ref } from "vue-property-decorator";
 import GlobalHeader from "@/components/GlobalHeader";
-import UpdatePass from "../views/User/updatePass.vue";
+import UpdatePass from "@/views/User/model/updatePass.vue";
 import { Layout, Dropdown, Menu, Icon, Modal } from "ant-design-vue";
 
 @Component({
@@ -67,6 +67,7 @@ export default class ClassName extends Vue {
     Modal.confirm({
       title: "确定进行[退出]操作?",
       okText: "确定",
+      class:"my-modal",
       cancelText: "取消",
       onOk: async () => {
         let { code } = await logout({});
