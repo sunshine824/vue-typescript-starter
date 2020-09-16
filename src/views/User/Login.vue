@@ -50,14 +50,13 @@
 
 <script lang="ts">
 import uuid from "uuid/v1";
-import {User} from "./index" //引入模块接口
+import { User } from "./index"; //引入模块接口
 import { initBg } from "@/utils/methods";
 import { setToken } from "@/utils/token";
 import { UserModule } from "@/store/modules/user";
 import { login } from "@/api/users";
 import { Component, Vue } from "vue-property-decorator";
 import { FormModel, Row, Col, Button, Input } from "ant-design-vue";
-
 
 @Component({
   components: {
@@ -104,7 +103,7 @@ export default class Login extends Vue {
           UserModule.SET_TOKEN(data.token);
           //将token存储到sessionStorage
           setToken(data.token);
-          this.$router.push("/control");
+          window.location.href = '/control'
         } catch (error) {
           this.getCaptcha();
         }
@@ -203,16 +202,15 @@ export default class Login extends Vue {
     width: 100%;
     margin-top: 15px;
   }
-}
-
-.ant-form-item-label > label {
-  font-weight: 800;
-  color: #fff !important;
-  font-size: 16px !important;
-  display: flex;
-  justify-content: space-between;
-}
-.ant-form-item-required::before {
-  margin-top: 15px;
+  .ant-form-item-label > label {
+    font-weight: 800;
+    color: #fff !important;
+    font-size: 16px !important;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ant-form-item-required::before {
+    margin-top: 15px;
+  }
 }
 </style>
