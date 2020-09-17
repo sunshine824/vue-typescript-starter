@@ -22,7 +22,7 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 │   ├── App.vue
 │   ├── api                     # 接口管理模块
 │   ├── assets                  # 静态资源模块
-│   ├── components              # 公共组件包
+│   ├── components              # 公共组件模块
 │   ├── layouts                 # 公共自定义布局
 │   ├── main.ts                 # 入口文件
 │   ├── public                  # 公共资源模块
@@ -30,7 +30,7 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 │   ├── store                   # vuex状态库
 │   ├── types                   # 声明文件
 │   ├── utils                   # 公共方法模块
-│   └── views                   # 视图包
+│   └── views                   # 视图模块
 ├── tsconfig.json
 └── vue.config.js
 ```
