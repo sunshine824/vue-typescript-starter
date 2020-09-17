@@ -10,11 +10,11 @@
           </div>
           <a-menu slot="overlay">
             <a-menu-item key="0">
-              <p @click="handlePass">修改密码</p>
+              <div @click="handlePass">修改密码</div>
             </a-menu-item>
             <a-menu-divider />
             <a-menu-item key="1">
-              <p @click="userLoyout">退出</p>
+              <div @click="userLoyout">退出</div>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
