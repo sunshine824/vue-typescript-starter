@@ -1,24 +1,26 @@
 <template>
-  <a-menu
-    :selected-keys="[activeRoute]"
-    @click="handleMenuItem"
-    mode="horizontal"
-    :style="{ lineHeight: '54px' }"
-  >
-    <template v-for="(menu, index) in menus" v-if="!menu.meta['hidden']">
-      <a-menu-item v-if="!menu.children || !menu.children.length" :key="menu.path">
-        <span>{{menu.meta['title']}}</span>
-      </a-menu-item>
-      <sub-menu v-else :menu="menu" :key="menu.path"></sub-menu>
-    </template>
-  </a-menu>
+  <div class="menu-class">
+    <a-menu
+      :selected-keys="[activeRoute]"
+      @click="handleMenuItem"
+      mode="horizontal"
+      :style="{ lineHeight: '54px' }"
+    >
+      <template v-for="(menu, index) in menus" v-if="!menu.meta['hidden']">
+        <a-menu-item v-if="!menu.children || !menu.children.length" :key="menu.path">
+          <span>{{menu.meta['title']}}</span>
+        </a-menu-item>
+        <sub-menu v-else :menu="menu" :key="menu.path"></sub-menu>
+      </template>
+    </a-menu>
+  </div>
 </template>
 
 <script lang="ts">
 import { RouteConfig, Route } from "vue-router";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { Layout, Menu, Dropdown } from "ant-design-vue";
-import SubMenu from "./SubMenu.vue"
+import SubMenu from "./SubMenu.vue";
 
 @Component({
   components: {
@@ -34,7 +36,6 @@ export default class Menus extends Vue {
 
   mounted() {
     this.getMenus();
-    console.log(this.menus);
     this.routeChange(this.$route, this.$route);
   }
 
@@ -61,4 +62,107 @@ export default class Menus extends Vue {
 </script>
 
 <style lang="less" scope>
+.menu-class {
+  .ant-menu {
+    background: @navThemeColor;
+    max-width: 700px;
+    margin-right: 20px;
+    .ant-menu-item {
+      color: #b0b0b1;
+      font-size: 15px;
+      border-bottom: none;
+      top: 0;
+      &-active {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      &-selected {
+        background: #4a4b4c;
+        position: relative;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.9);
+        border-bottom: none;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          height: 3px;
+          width: 100%;
+          background: #0972fe;
+          left: 0;
+        }
+      }
+    }
+  }
+  .ant-menu-submenu {
+    top: 0;
+    border-bottom: none;
+    &-title {
+      color: #b0b0b1;
+      font-size: 15px;
+      &:hover {
+        color: #fff;
+      }
+    }
+    &-active {
+      color: rgba(255, 255, 255, 0.9);
+      border-bottom: none !important;
+    }
+    &-selected {
+      background: #4a4b4c;
+      position: relative;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+      border-bottom: none !important;
+      .ant-menu-submenu-title {
+        color: #fff;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        height: 3px;
+        width: 100%;
+        background: #0972fe;
+        left: 0;
+      }
+    }
+  }
+}
+.sub-menu-class {
+  & > .ant-menu {
+    background: @navThemeColor;
+  }
+  .ant-menu-submenu-title {
+    height: 36px !important;
+    line-height: 36px !important;
+    color: rgba(255,255,255, .8);
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .ant-menu-item{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    height: 36px !important;
+    line-height: 36px !important;
+    color: rgba(255,255,255, .8);
+  }
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background: rgb(19 114 254);
+    color: #fff;
+  }
+  .ant-menu-sub{
+    li{
+      border-bottom: 1px solid #494949;
+      &:first-child{
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+      &:last-child{
+        border-bottom: none;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+    }
+  }
+}
 </style>

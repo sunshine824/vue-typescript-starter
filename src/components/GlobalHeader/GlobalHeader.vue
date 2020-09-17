@@ -58,35 +58,6 @@ export default class GlobalHeader extends Vue {
         height: 100%;
       }
     }
-    .ant-menu {
-      background: @navThemeColor;
-      max-width: 700px;
-      .ant-menu-item {
-        color: #b0b0b1;
-        font-size: 15px;
-        border-bottom: none;
-        top: 0;
-        &-active {
-          color: rgba(255, 255, 255, 0.9);
-        }
-        &-selected {
-          background: #4a4b4c;
-          position: relative;
-          font-weight: 700;
-          color: rgba(255, 255, 255, 0.9);
-          border-bottom: none;
-          &::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            height: 3px;
-            width: 100%;
-            background: #0972fe;
-            left: 0;
-          }
-        }
-      }
-    }
   }
   .userInfo {
     min-width: 100px;

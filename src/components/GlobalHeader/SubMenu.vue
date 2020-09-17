@@ -1,6 +1,6 @@
 
 <template functional>
-  <a-sub-menu :key="props.menu.path" :title="props.menu.meta['title']">
+  <a-sub-menu popupClassName="sub-menu-class" :key="props.menu.path" :title="props.menu.meta['title']">
     <template v-for="item in props.menu.children">
       <a-menu-item v-if="!item.children || !item.children.length" :key="item.path">
         <span>{{item.meta['title']}}</span>
@@ -18,4 +18,7 @@ export default class SubMenu extends Vue {}
 </script>
 
 <style lang="less" scope>
+.sub-menu-class{
+
+}
 </style>

@@ -96,6 +96,7 @@ export default class ClassName extends Vue {
       width: 30px;
       height: 30px;
       margin-right: 10px;
+      margin-top: -4px;
     }
     .userName {
       line-height: 54px;
