@@ -1,12 +1,6 @@
 import CryptoJS from "crypto-js"
 import SparkMD5 from 'spark-md5'
 
-interface EventParam {
-  target: {
-    result: any
-  }
-}
-
 //初始化背景墙
 export const initBg = () => {
   const STAR_COUNT = (window.innerWidth + window.innerHeight) / 8,
