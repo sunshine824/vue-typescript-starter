@@ -51,7 +51,7 @@
 <script lang="ts">
 import uuid from "uuid/v1";
 import { User } from "./index"; //引入模块接口
-import { initBg } from "@/utils/methods";
+import { initBg } from "@/utils/util";
 import { setToken } from "@/utils/token";
 import { UserModule } from "@/store/modules/user";
 import { login } from "@/api/users";

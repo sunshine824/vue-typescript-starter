@@ -50,7 +50,7 @@
 <script lang="ts">
 import { User } from "@/views/User";
 import { Component, Prop, Vue, Ref } from "vue-property-decorator";
-import { checkPassModes } from "@/utils/methods";
+import { checkPassModes } from "@/utils/util";
 import { FormModel, Button, Input } from "ant-design-vue";
 
 @Component({

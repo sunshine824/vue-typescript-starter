@@ -3,7 +3,7 @@ import VueRouter, { RawLocation, Route, RouteConfig } from 'vue-router'
 import { mainRoutes, baseRoutes } from './router.config'
 import { getToken } from '@/utils/token';
 import { getPermissionsList } from '@/api/users';
-import { isURL } from '@/utils/methods';
+import { isURL } from '@/utils/util';
 
 //防止路由重复点击报错
 const originalPush: any = VueRouter.prototype.push
