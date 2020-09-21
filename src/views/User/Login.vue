@@ -1,57 +1,63 @@
 <template>
-  <div class="site-wrapper site-page--login">
-    <canvas id="bg"></canvas>
-    <!-- <div class="sub-logo">
+  <global-bg class="site-wrapper site-page--login">
+    <template slot="content">
+      <!-- <div class="sub-logo">
       <img src="../assets/logo.png" />
-    </div>-->
-    <div class="site-content__wrapper">
-      <div class="site-content">
-        <div class="login-main">
-          <img class="img" :src="logo" />
-          <a-form-model
-            :model="dataForm"
-            :rules="dataRule"
-            ref="dataForm"
-            @keyup.enter.native="dataFormSubmit()"
-            status-icon
-            :label-col="labelCol"
-            :wrapper-col="wrapperCol"
-          >
-            <a-form-model-item prop="username">
-              <a-input size="large" v-model="dataForm.username" placeholder="请输入用户名"></a-input>
-            </a-form-model-item>
-            <a-form-model-item prop="password">
-              <a-input size="large" v-model="dataForm.password" type="password" placeholder="请输入密码"></a-input>
-            </a-form-model-item>
-            <a-form-model-item prop="captcha">
-              <a-row :gutter="20" style="display:flex;flex-flow: row nowrap;align-items: center;">
-                <a-col :span="16">
-                  <a-input size="large" v-model="dataForm.captcha" placeholder="请输入验证码"></a-input>
-                </a-col>
-                <a-col :span="8" class="login-captcha">
-                  <img :src="captchaPath" @click="getCaptcha()" alt style="height: 38px;" />
-                </a-col>
-              </a-row>
-            </a-form-model-item>
-            <a-form-model-item :wrapper-col="{ span: 18, offset: 3 }">
-              <a-button
-                size="large"
-                class="login-btn-submit"
-                type="primary"
-                @click="dataFormSubmit"
-              >登录</a-button>
-            </a-form-model-item>
-          </a-form-model>
+      </div>-->
+      <div class="site-content__wrapper">
+        <div class="site-content">
+          <div class="login-main">
+            <img class="img" :src="logo" />
+            <a-form-model
+              :model="dataForm"
+              :rules="dataRule"
+              ref="dataForm"
+              @keyup.enter.native="dataFormSubmit()"
+              status-icon
+              :label-col="labelCol"
+              :wrapper-col="wrapperCol"
+            >
+              <a-form-model-item prop="username">
+                <a-input size="large" v-model="dataForm.username" placeholder="请输入用户名"></a-input>
+              </a-form-model-item>
+              <a-form-model-item prop="password">
+                <a-input
+                  size="large"
+                  v-model="dataForm.password"
+                  type="password"
+                  placeholder="请输入密码"
+                ></a-input>
+              </a-form-model-item>
+              <a-form-model-item prop="captcha">
+                <a-row :gutter="20" style="display:flex;flex-flow: row nowrap;align-items: center;">
+                  <a-col :span="16">
+                    <a-input size="large" v-model="dataForm.captcha" placeholder="请输入验证码"></a-input>
+                  </a-col>
+                  <a-col :span="8" class="login-captcha">
+                    <img :src="captchaPath" @click="getCaptcha()" alt style="height: 38px;" />
+                  </a-col>
+                </a-row>
+              </a-form-model-item>
+              <a-form-model-item :wrapper-col="{ span: 18, offset: 3 }">
+                <a-button
+                  size="large"
+                  class="login-btn-submit"
+                  type="primary"
+                  @click="dataFormSubmit"
+                >登录</a-button>
+              </a-form-model-item>
+            </a-form-model>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </template>
+  </global-bg>
 </template>
 
 <script lang="ts">
 import uuid from "uuid/v1";
+import GlobalBg from "@/components/GlobalBg.vue";
 import { User } from "./index"; //引入模块接口
-import { initBg } from "@/utils/util";
 import { setToken } from "@/utils/token";
 import { UserModule } from "@/store/modules/user";
 import { login } from "@/api/users";
@@ -65,7 +71,8 @@ import { FormModel, Row, Col, Button, Input } from "ant-design-vue";
     ARow: Row,
     ACol: Col,
     AButton: Button,
-    AInput: Input
+    AInput: Input,
+    GlobalBg
   }
 })
 export default class Login extends Vue {
@@ -88,7 +95,6 @@ export default class Login extends Vue {
 
   mounted() {
     this.$nextTick(() => {
-      initBg();
       this.getCaptcha();
     });
   }
@@ -103,7 +109,7 @@ export default class Login extends Vue {
           UserModule.SET_TOKEN(data.token);
           //将token存储到sessionStorage
           setToken(data.token);
-          window.location.href = '/control'
+          window.location.href = "/control";
         } catch (error) {
           this.getCaptcha();
         }
@@ -121,28 +127,6 @@ export default class Login extends Vue {
 
 <style lang="less" scope>
 .site-wrapper.site-page--login {
-  canvas {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-  }
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  background-image: radial-gradient(
-      circle at top right,
-      rgba(121, 68, 154, 0.13),
-      transparent
-    ),
-    radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent);
-  overflow: hidden;
   .sub-logo {
     position: absolute;
     width: 100px;
