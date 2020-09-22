@@ -35,4 +35,15 @@ declare namespace StoreState {
       span: number
     }
   }
+
+  //分页参数
+  export interface Pagination {
+    current?: number,
+    position?: string,
+    pageSize?: number,
+    showQuickJumper?: boolean,
+    showSizeChanger?: boolean,
+    total?: number,
+    showTotal?: (total: number, range: [number, number]) => any
+  }
 }
