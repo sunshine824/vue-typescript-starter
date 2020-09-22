@@ -6,7 +6,7 @@
       mode="horizontal"
       :style="{ lineHeight: '54px' }"
     >
-      <template v-for="(menu, index) in menus" v-if="!menu.meta['hidden']">
+      <template v-for="menu in menuLists">
         <a-menu-item v-if="!menu.children || !menu.children.length" :key="menu.path">
           <span>{{menu.meta['title']}}</span>
         </a-menu-item>
@@ -37,6 +37,13 @@ export default class Menus extends Vue {
   mounted() {
     this.getMenus();
     this.routeChange(this.$route, this.$route);
+  }
+
+  //inital computed
+  get menuLists(){
+    return this.menus.filter((item)=>{
+      return !item.meta['hidden']
+    })
   }
 
   //获取路由列表
