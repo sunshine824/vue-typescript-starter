@@ -6,7 +6,7 @@
         <a-dropdown>
           <div>
             <img src="../assets/user.png" class="userHead" />
-            <a @click="e => e.preventDefault()" class="userName">admin</a>
+            <a @click="e => e.preventDefault()" class="userName">{{userName}}</a>
           </div>
           <a-menu slot="overlay">
             <a-menu-item key="0">
@@ -35,7 +35,7 @@
 import { logout } from "@/api/users";
 import { Component, Vue, Ref } from "vue-property-decorator";
 import GlobalHeader from "@/components/GlobalHeader";
-import UpdatePass from "@/views/User/model/updatePass.vue";
+import UpdatePass from "@/views/user/model/updatePass.vue";
 import { Layout, Dropdown, Menu, Icon, Modal } from "ant-design-vue";
 
 @Component({
@@ -60,6 +60,11 @@ export default class ClassName extends Vue {
   //显示修改密码框
   private handlePass() {
     this.updatePass.show()
+  }
+
+  get userName(){
+    let userInfo = sessionStorage.getItem('userInfo')
+    return userInfo ? JSON.parse(userInfo).username : 'admin'
   }
 
   //用户登出

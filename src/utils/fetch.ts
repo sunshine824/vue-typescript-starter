@@ -79,7 +79,7 @@ export function Patch(params: StoreState.FetchParams) {
 axios.interceptors.request.use((config: AxiosRequestConfig) => {
   config.headers.common['Authorization'] = getToken() // 请求头带上token
   config.headers.common['token'] = getToken()
-  config.baseURL = "/dbd-authority"
+  config.baseURL = "/api"
   return config
 }, error => {
   return Promise.reject(error)
@@ -96,8 +96,6 @@ axios.interceptors.response.use((response: AxiosResponse) => {
         title: 'token出错',
         content: "token失效，请重新登录！",
         onOk: () => {
-          // let url: string = `${window.config.loginUrl}?token =${getToken()}`
-          // window.location.href = url
           removeToken()
           router.push('/login')
         }
@@ -106,13 +104,10 @@ axios.interceptors.response.use((response: AxiosResponse) => {
       if (response.data.status == false) {
         message.warning(msg)
       } else {
+        msg && message.success(msg)
         return Promise.resolve(response);
       }
     }
-    notification.error({
-      message: 'Error',
-      description: msg
-    })
     return Promise.reject(response);
   }
   return response

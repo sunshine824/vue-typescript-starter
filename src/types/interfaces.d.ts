@@ -16,12 +16,12 @@ declare namespace StoreState {
 
   //权限返回实体
   export interface Role {
-    icon: string,
-    list: Role[],
-    menuId: number,
+    icon?: string,
+    list?: Role[],
+    menuId?: number,
     name: string,
-    perms: string,
-    requestPath: string,
+    perms?: string,
+    requestPath?: string,
     url: string,
     [propName: string]: any
   }

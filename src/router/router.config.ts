@@ -11,19 +11,19 @@ const mainRoutes: RouteConfig = {
     {
       path: '/404',
       name: '404',
-      component: resolve => require(['@/views/Exception/404'], resolve),
+      component: resolve => require(['@/views/exception/404'], resolve),
       meta: { title: '404', permission: ['exception'], hidden: true }
     },
     {
       path: '/403',
       name: '403',
-      component: resolve => require(['@/views/Exception/403'], resolve),
+      component: resolve => require(['@/views/exception/403'], resolve),
       meta: { title: '403', permission: ['exception'], hidden: true }
     },
     {
       path: '/500',
       name: '500',
-      component: resolve => require(['@/views/Exception/500'], resolve),
+      component: resolve => require(['@/views/exception/500'], resolve),
       meta: { title: '500', permission: ['exception'], hidden: true }
     }
   ]
@@ -34,7 +34,7 @@ const baseRoutes: RouteConfig[] = [
   {
     path: '/login',
     name: 'login',
-    component: resolve => require(['@/views/User/Login'], resolve)
+    component: resolve => require(['@/views/user/login'], resolve)
   },
   {
     path: '*',

@@ -4,15 +4,15 @@ import qs from 'qs'
 //用户登录
 export const login = (params: any) => {
   return Post({
-    url: '/sys/login',
+    url: '/login',
     data: params
   })
 }
 
 //用户登出
 export const logout = (params: any) => {
-  return Post({
-    url: '/sys/logout',
+  return Get({
+    url: '/logout',
     data: params
   })
 }
@@ -20,7 +20,7 @@ export const logout = (params: any) => {
 //获取权限列表
 export const getPermissionsList = (params: any) => {
   return Get({
-    url: "/sys/menu/navPerson",
+    url: "/navPerson",
     data: qs.stringify(params)
   })
 }

@@ -36,6 +36,7 @@
     "es6-promise": "^4.2.8",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "mockjs": "^1.1.0",
     "typescript": "~3.9.3",
     "vue-class": "^2.0.1",
     "vue-template-compiler": "^2.6.11"

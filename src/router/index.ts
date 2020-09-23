@@ -17,10 +17,10 @@ Vue.use(VueRouter)
 const dictPath: {
   [key: string]: any
 } = {
-  "Control": '/control',
-  "Arrange": '/arrange',
-  "Schedule": '/schedule',
-  "Monitor": '/monitor'
+  "control": '/control',
+  "arrange": '/arrange',
+  "schedule": '/schedule',
+  "monitor": '/monitor'
 }
 
 const router = new VueRouter({
@@ -41,11 +41,9 @@ router.beforeEach(async (to, from, next: any) => {
       try {
         let res = await getPermissionsList({})
         if (res.code == 200) {
-          let menu = res['data']['sync']
+          let menu = res['data']
           let mainRoutes: any = fnAddDynamicMenuRoutes(menu['menuList'] || [])
           router.options.isAddDynamicMenuRoutes = true
-          sessionStorage.setItem("userInfo", JSON.stringify(res['data']['userInfo']))
-          sessionStorage.setItem("sysCompany", JSON.stringify(res['data']['sysCompany']))
           sessionStorage.setItem('permissions', JSON.stringify(menu['permissions'] || '[]'))
           if (to.path == '/' || to.path == '/login') {
             let firstName = mainRoutes.length && mainRoutes[0].name

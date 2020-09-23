@@ -75,16 +75,16 @@ const vueConfig = {
     // development server port 8000
     port: 8010,
     // If you want to turn on the proxy, please remove the mockjs /src/main.jsL11
-    proxy: {
-      //配置权限代理
-      '/dbd-authority': {
-        target: 'http://product.cdjiamigu.com:8003/dbd-authority',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/dbd-authority': ''
-        }
-      }
-    },
+    // proxy: {
+    //   //配置权限代理
+    //   '/dbd-authority': {
+    //     target: 'http://product.cdjiamigu.com:8003/dbd-authority',
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/dbd-authority': ''
+    //     }
+    //   }
+    // },
   },
 
   // disable source map in production

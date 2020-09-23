@@ -28,7 +28,7 @@
                   placeholder="请输入密码"
                 ></a-input>
               </a-form-model-item>
-              <a-form-model-item prop="captcha">
+              <!-- <a-form-model-item prop="captcha">
                 <a-row :gutter="20" style="display:flex;flex-flow: row nowrap;align-items: center;">
                   <a-col :span="16">
                     <a-input size="large" v-model="dataForm.captcha" placeholder="请输入验证码"></a-input>
@@ -37,7 +37,7 @@
                     <img :src="captchaPath" @click="getCaptcha()" alt style="height: 38px;" />
                   </a-col>
                 </a-row>
-              </a-form-model-item>
+              </a-form-model-item> -->
               <a-form-model-item :wrapper-col="{ span: 18, offset: 3 }">
                 <a-button
                   size="large"
@@ -109,6 +109,7 @@ export default class Login extends Vue {
           UserModule.SET_TOKEN(data.token);
           //将token存储到sessionStorage
           setToken(data.token);
+          sessionStorage.setItem('userInfo', JSON.stringify(data['userInfo']))
           window.location.href = "/control";
         } catch (error) {
           this.getCaptcha();
