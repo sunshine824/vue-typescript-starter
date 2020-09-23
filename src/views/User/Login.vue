@@ -37,7 +37,7 @@
                     <img :src="captchaPath" @click="getCaptcha()" alt style="height: 38px;" />
                   </a-col>
                 </a-row>
-              </a-form-model-item> -->
+              </a-form-model-item>-->
               <a-form-model-item :wrapper-col="{ span: 18, offset: 3 }">
                 <a-button
                   size="large"
@@ -50,6 +50,13 @@
           </div>
         </div>
       </div>
+      <p class="notice">
+        建议使用Chrome浏览器（版本：
+        <span style="color:#1890ff">84.0.4147.89</span>
+        及以上）在分辨率为
+        <span style="color:#1890ff">1920x1080</span>
+        下访问本平台
+      </p>
     </template>
   </global-bg>
 </template>
@@ -109,7 +116,7 @@ export default class Login extends Vue {
           UserModule.SET_TOKEN(data.token);
           //将token存储到sessionStorage
           setToken(data.token);
-          sessionStorage.setItem('userInfo', JSON.stringify(data['userInfo']))
+          sessionStorage.setItem("userInfo", JSON.stringify(data["userInfo"]));
           window.location.href = "/control";
         } catch (error) {
           this.getCaptcha();
@@ -128,6 +135,14 @@ export default class Login extends Vue {
 
 <style lang="less" scope>
 .site-wrapper.site-page--login {
+  .notice {
+    position: absolute;
+    bottom: 10px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    text-align: center;
+  }
   .sub-logo {
     position: absolute;
     width: 100px;
