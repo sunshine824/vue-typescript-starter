@@ -5,6 +5,9 @@ import { getToken } from '@/utils/token';
 import { getPermissionsList } from '@/api/users';
 import { isURL } from '@/utils/util';
 
+//是否需要动态路由   true:是  false:否
+const DYNROUTER = false
+
 //防止路由重复点击报错
 const originalPush: any = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location: RawLocation): Promise<Route> {
@@ -33,47 +36,51 @@ const router = new VueRouter({
   routes: [mainRoutes].concat(baseRoutes)
 })
 
-router.beforeEach(async (to, from, next: any) => {
-  let token: string = getToken() as string
-  if (token) {
-    if (!router.options.isAddDynamicMenuRoutes) {
-      //获取权限列表
-      try {
-        let res = await getPermissionsList({})
-        if (res.code == 200) {
-          let menu = res['data']
-          let mainRoutes: any = fnAddDynamicMenuRoutes(menu['menuList'] || [])
-          router.options.isAddDynamicMenuRoutes = true
-          sessionStorage.setItem('permissions', JSON.stringify(menu['permissions'] || '[]'))
-          if (to.path == '/' || to.path == '/login') {
-            let firstName = mainRoutes.length && mainRoutes[0].name
-            next({ name: firstName, replace: true })
+if (DYNROUTER) {
+  router.beforeEach(async (to, from, next: any) => {
+    let token: string = getToken() as string
+    if (token) {
+      //第一次加载路由列表并且该项目需要动态路由
+      if (!router.options.isAddDynamicMenuRoutes) {
+        //获取权限列表
+        try {
+          let res = await getPermissionsList({})
+          if (res.code == 200) {
+            let menu = res['data']
+            let mainRoutes: any = fnAddDynamicMenuRoutes(menu['menuList'] || [])
+            router.options.isAddDynamicMenuRoutes = true
+            sessionStorage.setItem('permissions', JSON.stringify(menu['permissions'] || '[]'))
+            if (to.path == '/' || to.path == '/login') {
+              let firstName = mainRoutes.length && mainRoutes[0].name
+              next({ name: firstName, replace: true })
+            } else {
+              next({ path: to.redirectedFrom })
+            }
           } else {
-            next({ path: to.redirectedFrom })
+            sessionStorage.setItem('menuList', '[]')
+            sessionStorage.setItem('permissions', '[]')
+            next()
           }
+        } catch (error) {
+          console.log(`%c${error} 请求菜单列表和权限失败，跳转至登录页！！`, 'color:blue')
+        }
+      } else {
+        if (to.path == '/' || to.path == '/login') {
+          next(from)
         } else {
-          sessionStorage.setItem('menuList', '[]')
-          sessionStorage.setItem('permissions', '[]')
           next()
         }
-      } catch (error) {
-        console.log(`%c${error} 请求菜单列表和权限失败，跳转至登录页！！`, 'color:blue')
       }
     } else {
-      if (to.path == '/' || to.path == '/login') {
-        next(from)
-      } else {
-        next()
+      router.options.isAddDynamicMenuRoutes = false
+      if (to.name != 'login') {
+        next({ name: 'login' })
       }
+      next()
     }
-  } else {
-    router.options.isAddDynamicMenuRoutes = false
-    if (to.name != 'login') {
-      next({ name: 'login' })
-    }
-    next()
-  }
-})
+  })
+}
+
 
 function fnAddDynamicMenuRoutes(menuList: StoreState.Role[], routes: RouteConfig[] = []) {
   let temp: StoreState.Role[] = []
