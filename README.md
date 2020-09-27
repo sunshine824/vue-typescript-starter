@@ -44,6 +44,10 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 - [x] 修改密码
 - [x] 动态路由
 
+#### 如何关闭动态路由
+将 src/router/index.ts 中 DYNROUTER 变量设置为false，即为关闭，反之开启
+当DYNROUTER为关闭状态时，路由可写在router.config.ts的mainRoutes主路由中
+
 #### 待优化或者实现
 
 刚开始学习 TypeScript，对 TS 的运用还有待提高，后续会触入更多的 TypeScript 特性。
