@@ -1,7 +1,16 @@
+/*
+ * @Description: 工具包
+ * @Author: chenxin
+ * @Date: 2020-09-22 16:11:50
+ * @LastEditors: chenxin
+ * @LastEditTime: 2020-09-29 11:14:29
+ */
+
 import CryptoJS from "crypto-js"
 import SparkMD5 from 'spark-md5'
 
-const KEY: string = 'ZHONGGUODIANWANG'
+const PublicKey: string = 'ZHONGGUODIANWANG'
+const IvKey: string = 'ZHONGGUODIANWANG'
 
 /**
  * URL地址
@@ -37,14 +46,14 @@ export const isIE = () => {
 }
 
 /*
-* 对密码进行加密，传输给后台进行验证
+* ECB加密
 * @param  {String}     word    需要加密的密码
 * @param  {String}     keyStr    对密码加密的秘钥
 * @return {String}     加密的密文
 * */
-export const encrypt = (word: string | number, keyStr?: string) => {
-  keyStr = keyStr ? keyStr : KEY;
-  word = typeof word == 'number' ? word.toString() : word
+export const ECBEncrypt = (word: string | number, keyStr?: string) => {
+  keyStr = keyStr ? keyStr : PublicKey;
+  word = typeof word != 'string' ? word.toString() : word
   let key = CryptoJS.enc.Utf8.parse(keyStr);
   let encryptedData = CryptoJS.AES.encrypt(word, key, {
     mode: CryptoJS.mode.ECB,
@@ -54,13 +63,13 @@ export const encrypt = (word: string | number, keyStr?: string) => {
 }
 
 /*
-* 对加密之后的密文在页面上进行解密，以便用户进行修改
+* ECB解密
 * @param  {String}     word    需要加密的密码
 * @param  {String}     keyStr    对密码加密的秘钥
 * @return {String}      解密的明文
 * */
-export const decrypt = (word: string | number, keyStr?: string) => {
-  keyStr = keyStr ? keyStr : KEY;
+export const ECBDecrypt = (word: string | number, keyStr?: string) => {
+  keyStr = keyStr ? keyStr : PublicKey;
   word = typeof word == 'number' ? word.toString() : word
   let key = CryptoJS.enc.Utf8.parse(keyStr);
   let encryptedHexStr = CryptoJS.enc.Base64.parse(word);
@@ -70,6 +79,51 @@ export const decrypt = (word: string | number, keyStr?: string) => {
     padding: CryptoJS.pad.Pkcs7
   });
   return decryptedData.toString(CryptoJS.enc.Utf8)
+}
+
+/*
+* CBC加密
+* @param  {String}     word    需要加密的密码
+* @param  {String}     keyStr    对密码加密的秘钥
+* @return {String}     加密的密文
+* */
+export const CBCEncrypt = (word: string | number, keyStr?: string) => {
+  keyStr = keyStr ? keyStr : PublicKey;
+  word = typeof word == 'number' ? word.toString() : word
+  const key = CryptoJS.enc.Utf8.parse(keyStr)
+  const iv = CryptoJS.enc.Utf8.parse(IvKey);
+
+  let srcs = CryptoJS.enc.Utf8.parse(word);
+  let encrypted = CryptoJS.AES.encrypt(srcs, key, {
+    iv: iv,
+    mode: CryptoJS.mode.CBC,
+    padding: CryptoJS.pad.Pkcs7
+  })
+  return CryptoJS.enc.Base64.stringify(encrypted.ciphertext)
+}
+
+/*
+* CBC解密
+* @param  {String}     word    需要加密的密码
+* @param  {String}     keyStr    对密码加密的秘钥
+* @return {String}      解密的明文
+* */
+export const CBCDecrypt = (word: string | number, keyStr?: string) => {
+  keyStr = keyStr ? keyStr : PublicKey;
+  word = typeof word == 'number' ? word.toString() : word
+  const key = CryptoJS.enc.Utf8.parse(keyStr);
+  const iv = CryptoJS.enc.Utf8.parse(IvKey);
+
+  let encryptedHexStr = CryptoJS.enc.Base64.parse(word)
+  let srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+  let decrypt = CryptoJS.AES.decrypt(srcs, key, {
+    iv: iv,
+    mode: CryptoJS.mode.CBC,
+    padding: CryptoJS.pad.Pkcs7
+  });
+  let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+  return decryptedStr.toString();
+
 }
 
 /**
@@ -85,7 +139,7 @@ export const getUploadFileMd5 = (dataFile: Blob) => {
     fileReader.onload = (e: ProgressEvent) => {
       spark.append((e.target as any).result)
       var md5 = spark.end()
-      return resolve(encrypt(md5))
+      return resolve(ECBEncrypt(md5))
     }
   })
 }

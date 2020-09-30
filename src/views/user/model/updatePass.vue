@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import { User } from "@/views/User";
+import { User } from "../interface";
 import { Component, Prop, Vue, Ref } from "vue-property-decorator";
 import { checkPassModes } from "@/utils/util";
 import { FormModel, Button, Input } from "ant-design-vue";

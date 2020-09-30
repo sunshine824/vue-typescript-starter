@@ -6,7 +6,7 @@ import { getPermissionsList } from '@/api/users';
 import { isURL } from '@/utils/util';
 
 //是否需要动态路由   true:是  false:否
-const DYNROUTER = false
+const DYNROUTER = true
 
 //防止路由重复点击报错
 const originalPush: any = VueRouter.prototype.push

@@ -64,7 +64,7 @@
 <script lang="ts">
 import uuid from "uuid/v1";
 import GlobalBg from "@/components/GlobalBg.vue";
-import { User } from "./index"; //引入模块接口
+import { User } from "./interface"; //引入模块接口
 import { setToken } from "@/utils/token";
 import { UserModule } from "@/store/modules/user";
 import { login } from "@/api/users";
@@ -73,13 +73,13 @@ import { FormModel, Row, Col, Button, Input } from "ant-design-vue";
 
 @Component({
   components: {
-    AFormModel: FormModel,
-    AFormModelItem: FormModel.Item,
+    GlobalBg,
     ARow: Row,
     ACol: Col,
     AButton: Button,
     AInput: Input,
-    GlobalBg
+    AFormModel: FormModel,
+    AFormModelItem: FormModel.Item
   }
 })
 export default class Login extends Vue {

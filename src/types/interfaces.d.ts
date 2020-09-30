@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: chenxin
+ * @Date: 2020-09-22 16:11:50
+ * @LastEditors: chenxin
+ * @LastEditTime: 2020-09-29 10:34:26
+ */
 declare namespace StoreState {
   //接口返回结构
   export interface Result {
@@ -39,11 +46,9 @@ declare namespace StoreState {
   //分页参数
   export interface Pagination {
     current?: number,
-    position?: string,
-    pageSize?: number,
-    showQuickJumper?: boolean,
-    showSizeChanger?: boolean,
-    total?: number,
-    showTotal?: (total: number, range: [number, number]) => any
+    position: string,
+    pageSize: number,
+    total: number,
+    showTotal: (total: number, range: [number, number]) => any
   }
 }
