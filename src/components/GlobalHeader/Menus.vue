@@ -1,9 +1,10 @@
 <template>
-  <div class="menu-class">
+  <div :class="['menu-class', mode+'-menu-class']">
     <a-menu
+      theme="dark"
       :selected-keys="[activeRoute]"
       @click="handleMenuItem"
-      mode="horizontal"
+      :mode="mode"
       :style="{ lineHeight: '54px' }"
     >
       <template v-for="menu in menuLists">
@@ -31,6 +32,14 @@ import SubMenu from "./SubMenu.vue";
   }
 })
 export default class Menus extends Vue {
+  @Prop({
+    type: String,
+    required: false,
+    default: "horizontal"
+  })
+  mode!: string;
+
+  //inital data
   private activeRoute: string = "";
   private menus: RouteConfig[] = [];
 
@@ -40,10 +49,10 @@ export default class Menus extends Vue {
   }
 
   //inital computed
-  get menuLists(){
-    return this.menus.filter((item)=>{
-      return !item.meta['hidden']
-    })
+  get menuLists() {
+    return this.menus.filter(item => {
+      return !item.meta["hidden"];
+    });
   }
 
   //获取路由列表
@@ -70,24 +79,60 @@ export default class Menus extends Vue {
 
 <style lang="less" scope>
 .menu-class {
-  .ant-menu {
-    background: @navThemeColor;
-    max-width: 700px;
-    margin-right: 20px;
-    .ant-menu-item {
-      color: #b0b0b1;
-      font-size: 15px;
-      border-bottom: none;
+  &.horizontal-menu-class {
+    .ant-menu {
+      background: @navThemeColor;
+      max-width: 700px;
+      margin-right: 20px;
+      .ant-menu-item {
+        color: #b0b0b1;
+        font-size: 15px;
+        border-bottom: none;
+        top: 0;
+        &-active {
+          color: rgba(255, 255, 255, 0.9);
+        }
+        &-selected {
+          background: #4a4b4c;
+          position: relative;
+          font-weight: 700;
+          color: rgba(255, 255, 255, 0.9);
+          border-bottom: none;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            height: 3px;
+            width: 100%;
+            background: #0972fe;
+            left: 0;
+          }
+        }
+      }
+    }
+    .ant-menu-submenu {
       top: 0;
+      border-bottom: none;
+      &-title {
+        color: #b0b0b1;
+        font-size: 15px;
+        &:hover {
+          color: #fff;
+        }
+      }
       &-active {
         color: rgba(255, 255, 255, 0.9);
+        border-bottom: none !important;
       }
       &-selected {
         background: #4a4b4c;
         position: relative;
         font-weight: 700;
         color: rgba(255, 255, 255, 0.9);
-        border-bottom: none;
+        border-bottom: none !important;
+        .ant-menu-submenu-title {
+          color: #fff;
+        }
         &::after {
           content: "";
           position: absolute;
@@ -100,37 +145,27 @@ export default class Menus extends Vue {
       }
     }
   }
-  .ant-menu-submenu {
-    top: 0;
-    border-bottom: none;
-    &-title {
-      color: #b0b0b1;
+  &.inline-menu-class {
+    .ant-menu-dark,
+    .ant-menu-dark .ant-menu-sub {
+      background: @navThemeColor;
+    }
+    .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+      background: #000c17;
+    }
+    .ant-menu-item {
       font-size: 15px;
-      &:hover {
-        color: #fff;
+      border-bottom: none;
+      top: 0;
+      &-active {
+        background: rgba(57, 57, 57, 0.5);
+        color: rgba(255, 255, 255, 0.9);
       }
-    }
-    &-active {
-      color: rgba(255, 255, 255, 0.9);
-      border-bottom: none !important;
-    }
-    &-selected {
-      background: #4a4b4c;
-      position: relative;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.9);
-      border-bottom: none !important;
-      .ant-menu-submenu-title {
-        color: #fff;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        height: 3px;
-        width: 100%;
-        background: #0972fe;
-        left: 0;
+      &-selected {
+        background: #1f7eff;
+        position: relative;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.9);
       }
     }
   }

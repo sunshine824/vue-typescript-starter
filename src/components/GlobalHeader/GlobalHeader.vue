@@ -5,10 +5,7 @@
         <img src="../../assets/logo.png" />
       </div>
       <div class="right-con">
-        <menus></menus>
-        <div class="userInfo">
-          <slot name="userInfo"></slot>
-        </div>
+        <slot name="rightCon"></slot>
       </div>
     </a-layout-header>
   </div>
@@ -18,12 +15,10 @@
 import { RouteConfig, Route } from "vue-router";
 import { Component, Vue, Watch, Emit } from "vue-property-decorator";
 import { Layout, Menu, Dropdown } from "ant-design-vue";
-import Menus from "./Menus.vue";
 
 @Component({
   components: {
-    ALayoutHeader: Layout.Header,
-    Menus
+    ALayoutHeader: Layout.Header
   }
 })
 export default class GlobalHeader extends Vue {
@@ -50,6 +45,7 @@ export default class GlobalHeader extends Vue {
     height: 54px;
     padding: 0 40px 0 15px;
     background: @navThemeColor;
+    border-bottom: 1px solid #434343;
     .logo {
       min-width: 120px;
       height: 46px;
@@ -57,17 +53,6 @@ export default class GlobalHeader extends Vue {
       img {
         height: 100%;
       }
-    }
-  }
-  .userInfo {
-    min-width: 100px;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: flex-end;
-    .ant-dropdown-trigger {
-      height: 54px;
-      line-height: 54px;
     }
   }
 }

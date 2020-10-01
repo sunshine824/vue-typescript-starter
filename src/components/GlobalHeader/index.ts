@@ -1,2 +1,4 @@
 import GlobalHeader from './GlobalHeader.vue'
-export default GlobalHeader
+import Menus from "./Menus.vue"
+
+export {GlobalHeader, Menus}
