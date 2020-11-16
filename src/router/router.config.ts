@@ -2,8 +2,8 @@
  * @Description: 路由配置
  * @Author: chenxin
  * @Date: 2020-09-22 16:11:50
- * @LastEditors: chenxin
- * @LastEditTime: 2020-10-01 20:49:27
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-16 23:12:19
  */
 import { RouteConfig } from 'vue-router'
 import { VerticalBasicLayout, LevelBasicLayout } from "@/layouts"
