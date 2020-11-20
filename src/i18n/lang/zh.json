@@ -1,0 +1,20 @@
+{
+  "home": {
+    "title": "智慧城市互联系统"
+  },
+  "menu": {
+    "system": "系统配置",
+    "eoms": "运维配置",
+    "eomsFault": "故障处理方案",
+    "eomsAlarm": "告警模板管理",
+    "database": "数据库配置",
+    "smart": "物联管理"
+  },
+  "country": {
+    "chinese": "中文",
+    "english": "英文"
+  },
+  "action": {
+    "exit": "退出"
+  }
+}

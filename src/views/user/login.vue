@@ -117,7 +117,7 @@ export default class Login extends Vue {
           //将token存储到sessionStorage
           setToken(data.token);
           sessionStorage.setItem("userInfo", JSON.stringify(data["userInfo"]));
-          window.location.href = "/control";
+          window.location.href = "/";
         } catch (error) {
           this.getCaptcha();
         }

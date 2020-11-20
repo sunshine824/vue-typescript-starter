@@ -1,128 +1,124 @@
-import Vue from 'vue'
-import VueRouter, { RawLocation, Route, RouteConfig } from 'vue-router'
-import { mainRoutes, baseRoutes } from './router.config'
-import { getToken } from '@/utils/token';
-import { getPermissionsList } from '@/api/users';
-import { isURL } from '@/utils/util';
+import Vue from "vue";
+import VueRouter, { RawLocation, Route, RouteConfig } from "vue-router";
+import { mainRoutes, baseRoutes } from "./router.config";
+import { getToken } from "@/utils/token";
+import { getPermissionsList } from "@/api/users";
+import { isURL } from "@/utils/util";
+import { RouteLayout } from "@/layouts";
 
 //是否需要动态路由   true:是  false:否
-const DYNROUTER = true
+const DYNROUTER = true;
 
 //防止路由重复点击报错
-const originalPush: any = VueRouter.prototype.push
-VueRouter.prototype.push = function push(location: RawLocation): Promise<Route> {
-  return originalPush.call(this, location).catch((err: any) => err)
-}
+const originalPush: any = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(
+  location: RawLocation
+): Promise<Route> {
+  return originalPush.call(this, location).catch((err: any) => err);
+};
 
-Vue.use(VueRouter)
-
-//路由字典表
-const dictPath: {
-  [key: string]: any
-} = {
-  "control": '/control',
-  "arrange": '/arrange',
-  "schedule": '/schedule',
-  "monitor": '/monitor'
-}
+Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   scrollBehavior(to, from, savedPosition) {
-    return savedPosition || { x: 0, y: 0 }
+    return savedPosition || { x: 0, y: 0 };
   },
   isAddDynamicMenuRoutes: false, // 是否已经添加动态(菜单)路由
   routes: [mainRoutes].concat(baseRoutes)
-})
+});
 
 if (DYNROUTER) {
   router.beforeEach(async (to, from, next: any) => {
-    let token: string = getToken() as string
+    let token: string = getToken() as string;
     if (token) {
       //第一次加载路由列表并且该项目需要动态路由
       if (!router.options.isAddDynamicMenuRoutes) {
         //获取权限列表
         try {
-          let res = await getPermissionsList({})
+          let res = await getPermissionsList({});
           if (res.code == 200) {
-            let menu = res['data']
-            let mainRoutes: any = fnAddDynamicMenuRoutes(menu['menuList'] || [])
-            router.options.isAddDynamicMenuRoutes = true
-            sessionStorage.setItem('permissions', JSON.stringify(menu['permissions'] || '[]'))
-            if (to.path == '/' || to.path == '/login') {
-              let firstName = mainRoutes.length && mainRoutes[0].name
-              next({ name: firstName, replace: true })
+            let menu = res["data"];
+            let menuRoutes: any = fnAddDynamicMenuRoutes(
+              menu["menuList"] || []
+            );
+            mainRoutes.children = menuRoutes;
+            router.addRoutes([
+              mainRoutes,
+              { path: "*", redirect: { name: "403" } }
+            ]);
+            router.options.isAddDynamicMenuRoutes = true;
+            sessionStorage.setItem(
+              "permissions",
+              JSON.stringify(menu["permissions"] || "[]")
+            );
+            if (to.path == "/" || to.path == "/login") {
+              let firstName = menuRoutes.length && menuRoutes[0].name;
+              next({ name: firstName, replace: true });
             } else {
-              next({ path: to.redirectedFrom })
+              next({ path: to.redirectedFrom });
             }
           } else {
-            sessionStorage.setItem('menuList', '[]')
-            sessionStorage.setItem('permissions', '[]')
-            next()
+            sessionStorage.setItem("menuList", "[]");
+            sessionStorage.setItem("permissions", "[]");
+            next();
           }
         } catch (error) {
-          console.log(`%c${error} 请求菜单列表和权限失败，跳转至登录页！！`, 'color:blue')
+          console.log(
+            `%c${error} 请求菜单列表和权限失败，跳转至登录页！！`,
+            "color:blue"
+          );
         }
       } else {
-        if (to.path == '/' || to.path == '/login') {
-          next(from)
+        if (to.path == "/" || to.path == "/login") {
+          next(from);
         } else {
-          next()
+          next();
         }
       }
     } else {
-      router.options.isAddDynamicMenuRoutes = false
-      if (to.name != 'login') {
-        next({ name: 'login' })
+      router.options.isAddDynamicMenuRoutes = false;
+      if (to.name != "login") {
+        next({ name: "login" });
       }
-      next()
+      next();
     }
-  })
+  });
 }
 
-
-function fnAddDynamicMenuRoutes(menuList: StoreState.Role[], routes: RouteConfig[] = []) {
-  let temp: StoreState.Role[] = []
-  menuList.map((item: StoreState.Role) => {
-    if (item.list && item.list.length >= 1) {
-      temp = temp.concat(item.list)
-    } else if (item.url && /\S/.test(item.url)) {
-      item.url = item.url.replace(/^\//, '')
-      let route: any = {
-        path: dictPath[item.url] || item.url,
-        component: null,
-        name: item.url.toLowerCase(),
+function fnAddDynamicMenuRoutes(
+  menuList: StoreState.Role[],
+  routes: RouteConfig[] = []
+) {
+  menuList.map(item => {
+    if (!item["list"]) {
+      routes.push({
+        path: "/" + item.url,
+        name: item.url,
+        component: (resolve: any) =>
+          require([`@/views/${item.url}/index`], resolve),
         meta: {
-          menuId: item.menuId,
           title: item.name,
-          keepAlive: false,
-          hidden: false
+          hidden: false,
+          icon: item.icon
         }
-      }
-      // url以http[s]://开头, 通过iframe展示
-      if (isURL(item.url)) {
-        route['path'] = `i-${item.menuId}`
-        route['name'] = `i-${item.menuId}`
-        route['meta']['iframeUrl'] = item.url
-      } else {
-        try {
-          route['component'] = (resolve: any) => require([`@/views/${item.url}/index`], resolve)
-        } catch (e) { }
-      }
-      routes.push(route)
+      });
+    } else if (item["list"] && item["list"].length) {
+      routes.push({
+        path: "/" + item.url,
+        name: item.url,
+        component: RouteLayout,
+        children: fnAddDynamicMenuRoutes(item["list"], []),
+        meta: {
+          title: item.name,
+          hidden: false,
+          icon: item.icon
+        }
+      });
     }
-  })
-  if (temp.length >= 1) {
-    fnAddDynamicMenuRoutes(temp, routes)
-  } else {
-    mainRoutes.children = routes.concat(mainRoutes.children as RouteConfig[])
-    router.addRoutes([
-      mainRoutes,
-      { path: '*', redirect: { name: '403' } }
-    ])
-    return mainRoutes.children
-  }
+  });
+  return routes;
 }
 
-export default router
+export default router;

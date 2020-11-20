@@ -3,21 +3,25 @@
     <a-menu
       theme="dark"
       :selected-keys="[activeRoute]"
+      :default-open-keys="!collapsed ? openKeys : []"
       @click="handleMenuItem"
       :mode="mode"
+      :inline-collapsed="collapsed"
       :style="{ lineHeight: '54px' }"
     >
       <template v-for="menu in menuLists">
         <a-menu-item v-if="!menu.children || !menu.children.length" :key="menu.path">
-          <span>{{menu.meta['title']}}</span>
+          <span v-if="menu.meta['icon']" :class="['iconfont', menu.meta['icon'], 'menu-icon']"></span>
+          <span>{{$t(menu.meta['title'])}}</span>
         </a-menu-item>
-        <sub-menu v-else :menu="menu" :key="menu.path"></sub-menu>
+        <sub-menu v-else :menu="menu" :transferI18n="transferI18n" :key="menu.path"></sub-menu>
       </template>
     </a-menu>
   </div>
 </template>
 
 <script lang="ts">
+import { CommonModule } from "@/store/modules/common";
 import { RouteConfig, Route } from "vue-router";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { Layout, Menu, Dropdown } from "ant-design-vue";
@@ -42,6 +46,7 @@ export default class Menus extends Vue {
   //inital data
   private activeRoute: string = "";
   private menus: RouteConfig[] = [];
+  private openKeys: string[] = ["/smart", "/eoms", "/system", "/database"];
 
   mounted() {
     this.getMenus();
@@ -49,10 +54,18 @@ export default class Menus extends Vue {
   }
 
   //inital computed
+  get collapsed(): boolean {
+    return CommonModule.getCollapsed;
+  }
   get menuLists() {
     return this.menus.filter(item => {
       return !item.meta["hidden"];
     });
+  }
+  get transferI18n() {
+    return (val: string) => {
+      return this.$t(val);
+    };
   }
 
   //获取路由列表
@@ -64,10 +77,13 @@ export default class Menus extends Vue {
       }
     });
   }
-
   //路由跳转
   private handleMenuItem(item: any) {
     this.$router.push(item.key);
+  }
+  //监听点击标题事件
+  private titleClick({ key, domEvent }: { key: string; domEvent: any }) {
+    this.$router.push(key);
   }
 
   @Watch("$route")
@@ -79,6 +95,30 @@ export default class Menus extends Vue {
 
 <style lang="less" scope>
 .menu-class {
+  .menu-icon {
+    margin-right: 15px;
+  }
+  .ant-menu-inline-collapsed {
+    width: 60px;
+    & > .ant-menu-submenu {
+      & > .ant-menu-submenu-title {
+        padding: 0 24px !important;
+        .menu-icon {
+          & + span {
+            opacity: 0;
+          }
+        }
+      }
+    }
+    & > .ant-menu-item {
+      padding: 0 24px !important;
+      .menu-icon {
+        & + span {
+          opacity: 0;
+        }
+      }
+    }
+  }
   &.horizontal-menu-class {
     .ant-menu {
       background: @navThemeColor;

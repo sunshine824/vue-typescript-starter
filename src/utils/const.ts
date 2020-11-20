@@ -3,7 +3,7 @@
  * @Author: chenxin
  * @Date: 2020-09-29 10:19:01
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-16 23:19:40
+ * @LastEditTime: 2020-11-20 10:58:57
  */
 
 //定义分页类
@@ -33,3 +33,9 @@ export class Pagination implements StoreState.Pagination {
 export const ModelProps = {
   maskClosable: false //点击蒙层是否允许关闭
 };
+
+//定义国际化
+export const Languages = [
+  { value: "zh", label: "country.chinese"},
+  { value: "en", label: "country.english"}
+];

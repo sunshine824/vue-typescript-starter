@@ -1,13 +1,15 @@
-
 <template functional>
-  <a-sub-menu
-    popupClassName="sub-menu-class"
-    :key="props.menu.path"
-    :title="props.menu.meta['title']"
-  >
+  <a-sub-menu popupClassName="sub-menu-class" :key="props.menu.path">
+    <span slot="title">
+      <span
+        v-if="props.menu.meta['icon']"
+        :class="['iconfont', props.menu.meta['icon'], 'menu-icon']"
+      ></span>
+      <span>{{props.transferI18n(props.menu.meta['title'])}}</span>
+    </span>
     <template v-for="item in props.menu.children">
       <a-menu-item v-if="!item.children || !item.children.length" :key="item.path">
-        <span>{{item.meta['title']}}</span>
+        <span style="margin-left:10px;">{{props.transferI18n(item.meta['title'])}}</span>
       </a-menu-item>
       <sub-menu v-else :key="item.path" :menu="item"></sub-menu>
     </template>

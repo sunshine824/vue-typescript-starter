@@ -1,0 +1,20 @@
+{
+  "home": {
+    "title": "Smart City Interconnection System"
+  },
+  "menu": {
+    "system": "System config",
+    "eoms": "Operation config",
+    "eomsFault": "Fault handling plan",
+    "eomsAlarm": "Alarm template management",
+    "database": "Database config",
+    "smart": "LoT management"
+  },
+  "country": {
+    "chinese": "Chinese",
+    "english": "English"
+  },
+  "action": {
+    "exit": "Exit"
+  }
+}

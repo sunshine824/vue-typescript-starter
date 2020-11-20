@@ -1,12 +1,12 @@
 <template>
-  <div>控制台</div>
+  <div></div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class ClassName extends Vue {}
+export default class Alarm extends Vue {}
 </script>
 
 <style lang="less" scope>

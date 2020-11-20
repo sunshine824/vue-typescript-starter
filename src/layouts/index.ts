@@ -2,10 +2,12 @@
  * @Description: 基础排版
  * @Author: chenxin
  * @Date: 2020-09-22 16:11:50
- * @LastEditors: chenxin
- * @LastEditTime: 2020-10-01 19:41:44
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-20 15:46:10
  */
-import LevelBasicLayout from './LevelBasicLayout.vue'
-import VerticalBasicLayout from "./VerticalBasicLayout.vue"
+import LevelBasicLayout from "./LevelBasicLayout.vue";
+import VerticalBasicLayout from "./VerticalBasicLayout.vue";
+import RouteLayout from "./RouteLayout.vue";
+import BlankLayout from "./BlankLayout.vue";
 
-export { LevelBasicLayout, VerticalBasicLayout }
+export { LevelBasicLayout, VerticalBasicLayout, RouteLayout, BlankLayout };

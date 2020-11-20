@@ -1,12 +1,14 @@
 <template>
-  <div>作业调度</div>
+  <div>
+    <router-view />
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Schedule extends Vue {}
+export default class BlankLayout extends Vue {}
 </script>
 
 <style lang="less" scope>
