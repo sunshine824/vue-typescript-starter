@@ -36,12 +36,12 @@ export default class System extends Vue {
     {
       type: "hls",
       title: "hls视频流",
-      src: "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"
+      src: "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8"
     },
     {
       type: "rtmp",
       title: "rtmp视频流",
-      src: "rtmp://58.200.131.2:1935/livetv/hunantv"
+      src: "rtmp://media3.sinovision.net:1935/live/livestream"
     },
     {
       type: "flv",

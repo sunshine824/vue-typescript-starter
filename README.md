@@ -9,6 +9,7 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 
 ### 项目截图
 <img src="https://github.com/sunshine824/vue-typescript-starter/blob/master/src/assets/screenshot/sreen01.png" width="600" height="322"/>
+<img src="https://github.com/sunshine824/vue-typescript-starter/blob/master/src/assets/screenshot/sreen04.png" width="600" height="322"/>
 <img src="https://github.com/sunshine824/vue-typescript-starter/blob/master/src/assets/screenshot/sreen02.png" width="600" height="322"/>
 <img src="https://github.com/sunshine824/vue-typescript-starter/blob/master/src/assets/screenshot/sreen03.png" width="600" height="322"/>
 由于每个项目呈现内容不同，所以在这里我就只搭建了一个骨架，具体内容自定义。
