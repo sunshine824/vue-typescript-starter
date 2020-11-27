@@ -7,6 +7,12 @@ TypeScript 具有类型系统，且是 JavaScript 的超集，TypeScript 在 201
 
 Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 年 TypeScript 将会更加普及，能够熟练掌握 TS，并使用 TS 开发过项目，将更加成为前端开发者的优势。
 
+### 项目截图
+<img src="https://github.com/sunshine824/vue-typescript-starter/blob/master/src/assets/screenshot/sreen01.png" width="600" height="322"/>
+<img src="https://github.com/sunshine824/vue-typescript-starter/blob/master/src/assets/screenshot/sreen02.png" width="600" height="322"/>
+<img src="https://github.com/sunshine824/vue-typescript-starter/blob/master/src/assets/screenshot/sreen03.png" width="600" height="322"/>
+由于每个项目呈现内容不同，所以在这里我就只搭建了一个骨架，具体内容自定义。
+
 ### 目录结构
 ```bash
 .
@@ -75,12 +81,12 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 
 ```
 # clone
-git clone https://github.com/sunshine824/vue-typescript-cli.git
+git clone https://github.com/sunshine824/vue-typescript-starter.git
 ```
 
 ```
 # cd
-cd  vue-typescript-cli
+cd  vue-typescript-starter
 ```
 
 ```
