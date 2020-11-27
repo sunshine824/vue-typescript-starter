@@ -3,7 +3,7 @@
     "title": "Smart City Interconnection System"
   },
   "menu": {
-    "system": "System config",
+    "system": "System monitoring",
     "eoms": "Operation config",
     "eomsFault": "Fault handling plan",
     "eomsAlarm": "Alarm template management",

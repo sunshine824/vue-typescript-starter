@@ -5,6 +5,10 @@ import store from "./store";
 import i18n from "./i18n";
 import { Modal } from "ant-design-vue";
 
+// 导入视频播放组件
+import VueVideoPlayer from "vue-video-player";
+import "video.js/dist/video-js.css";
+
 import "@/public/font/iconfont.css";
 import "@/mock";
 
@@ -13,6 +17,7 @@ import "babel-polyfill";
 import Es6Promise from "es6-promise";
 
 Vue.use(Modal);
+Vue.use(VueVideoPlayer);
 
 Es6Promise.polyfill();
 
