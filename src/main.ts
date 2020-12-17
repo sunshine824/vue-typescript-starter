@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import i18n from "./i18n";
 import { Modal } from "ant-design-vue";
+import { Message, Notification } from "@/utils/resetMessage";
 
 // 导入视频播放组件
 import VueVideoPlayer from "vue-video-player";
@@ -23,6 +24,8 @@ Es6Promise.polyfill();
 
 Vue.config.productionTip = false;
 Vue.prototype.$URL = window.config;
+Vue.prototype.$message = Message;
+Vue.prototype.$notification = Notification;
 
 new Vue({
   router,

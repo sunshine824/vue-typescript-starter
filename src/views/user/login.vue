@@ -7,26 +7,25 @@
       <div class="site-content__wrapper">
         <div class="site-content">
           <div class="login-main">
-            <img class="img" :src="logo" />
-            <a-form-model
-              :model="dataForm"
-              :rules="dataRule"
-              ref="dataForm"
-              @keyup.enter.native="dataFormSubmit()"
-              status-icon
-              :label-col="labelCol"
-              :wrapper-col="wrapperCol"
-            >
+            <img class="img"
+                 :src="logo" />
+            <a-form-model :model="dataForm"
+                          :rules="dataRule"
+                          ref="dataForm"
+                          @keyup.enter.native="dataFormSubmit()"
+                          status-icon
+                          :label-col="labelCol"
+                          :wrapper-col="wrapperCol">
               <a-form-model-item prop="username">
-                <a-input size="large" v-model="dataForm.username" placeholder="请输入用户名"></a-input>
+                <a-input size="large"
+                         v-model="dataForm.username"
+                         placeholder="请输入用户名"></a-input>
               </a-form-model-item>
               <a-form-model-item prop="password">
-                <a-input
-                  size="large"
-                  v-model="dataForm.password"
-                  type="password"
-                  placeholder="请输入密码"
-                ></a-input>
+                <a-input size="large"
+                         v-model="dataForm.password"
+                         type="password"
+                         placeholder="请输入密码"></a-input>
               </a-form-model-item>
               <!-- <a-form-model-item prop="captcha">
                 <a-row :gutter="20" style="display:flex;flex-flow: row nowrap;align-items: center;">
@@ -39,12 +38,10 @@
                 </a-row>
               </a-form-model-item>-->
               <a-form-model-item :wrapper-col="{ span: 18, offset: 3 }">
-                <a-button
-                  size="large"
-                  class="login-btn-submit"
-                  type="primary"
-                  @click="dataFormSubmit"
-                >登录</a-button>
+                <a-button size="large"
+                          class="login-btn-submit"
+                          type="primary"
+                          @click="dataFormSubmit">登录</a-button>
               </a-form-model-item>
             </a-form-model>
           </div>
@@ -79,8 +76,8 @@ import { FormModel, Row, Col, Button, Input } from "ant-design-vue";
     AButton: Button,
     AInput: Input,
     AFormModel: FormModel,
-    AFormModelItem: FormModel.Item
-  }
+    AFormModelItem: FormModel.Item,
+  },
 })
 export default class Login extends Vue {
   // initial data
@@ -91,13 +88,13 @@ export default class Login extends Vue {
   private dataRule: any = {
     username: [{ required: true, message: "用户名不能为空", trigger: "blur" }],
     password: [{ required: true, message: "密码不能为空", trigger: "blur" }],
-    captcha: [{ required: true, message: "验证码不能为空", trigger: "blur" }]
+    captcha: [{ required: true, message: "验证码不能为空", trigger: "blur" }],
   };
   private dataForm: User.Login = {
     username: "",
     password: "",
     captcha: "",
-    uuid: ""
+    uuid: "",
   };
 
   mounted() {

@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { getToken, removeToken } from "@/utils/token";
-import { Modal, message, notification } from "ant-design-vue";
+import { Modal } from "ant-design-vue";
+import { Message, Notification } from "@/utils/resetMessage";
 import router from "@/router";
 
 /**
@@ -113,16 +114,16 @@ axios.interceptors.response.use(
       } else if (code == 200) {
         if (status) {
           //接口请求成功
-          msg && message.success(msg); //后台如果返回了msg，则将msg提示出来
+          msg && Message.success(msg); //后台如果返回了msg，则将msg提示出来
           return Promise.resolve(response); //返回成功数据
         } else {
           //接口异常
-          msg && message.warning(msg); //后台如果返回了msg，则将msg提示出来
+          msg && Message.warning(msg); //后台如果返回了msg，则将msg提示出来
           return Promise.reject(response); //返回异常数据
         }
       } else {
         //接口异常
-        msg && message.error(msg);
+        msg && Message.error(msg);
         return Promise.reject(response);
       }
     }
@@ -132,32 +133,32 @@ axios.interceptors.response.use(
     if (error.response.status) {
       switch (error.response.status) {
         case 500:
-          notification.error({
+          Notification.error({
             message: "Forbidden",
             description: error.response.data
           });
           break;
         case 401:
-          notification.error({
+          Notification.error({
             message: "Forbidden",
             description: "暂无权限"
           });
           break;
         case 403:
-          notification.error({
+          Notification.error({
             message: "Forbidden",
             description: "登录过期，请重新登录"
           });
           break;
         // 404请求不存在
         case 404:
-          notification.error({
+          Notification.error({
             message: "Forbidden",
             description: "网络请求不存在"
           });
           break;
         default:
-          notification.error({
+          Notification.error({
             message: "Forbidden",
             description: error.response.data.msg
           });

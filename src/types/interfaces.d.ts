@@ -58,4 +58,18 @@ declare namespace StoreState {
     url: string;
     id: string;
   }
+
+  //列表mixin
+  export interface TableMixinOptions {
+    queryTableApi: ({ }) => any;
+    deleteApi: ({ }) => any;
+  }
+
+  //列表查询参数
+  export interface TableQueryOptions {
+    orgId?: string;
+    pageNo: number;
+    pageSize: number;
+    [propName: string]: any;
+  }
 }

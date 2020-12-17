@@ -7,3 +7,4 @@ declare module 'crypto-js'
 declare module 'spark-md5'
 declare module "mockjs"
 declare module "vue-video-player"
+declare module '@/utils/*'
