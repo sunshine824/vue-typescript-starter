@@ -5,6 +5,7 @@ import { getToken } from "@/utils/token";
 import { getPermissionsList } from "@/api/users";
 import { isURL } from "@/utils/util";
 import { RouteLayout } from "@/layouts";
+import { AxiosResponse } from 'axios';
 
 //是否需要动态路由   true:是  false:否
 const DYNROUTER = true;

@@ -4,17 +4,20 @@
     <global-header @goToHome="goToHome">
       <template slot="rightCon">
         <div class="user-info">
-          <a-select :default-value="lang" size="small" @change="toggleChangeLang" class="lang-box">
-            <a-select-option
-              v-for="(item, index) in Languages"
-              :value="item.value"
-              :key="item.value"
-            >{{$t(item.label)}}</a-select-option>
+          <a-select :default-value="lang"
+                    size="small"
+                    @change="toggleChangeLang"
+                    class="lang-box">
+            <a-select-option v-for="(item, index) in Languages"
+                             :value="item.value"
+                             :key="item.value">{{$t(item.label)}}</a-select-option>
           </a-select>
           <a-dropdown>
             <div>
-              <img src="../assets/user.png" class="user-head" />
-              <a @click="e => e.preventDefault()" class="user-name">{{userName}}</a>
+              <img src="../assets/user.png"
+                   class="user-head" />
+              <a @click="e => e.preventDefault()"
+                 class="user-name">{{userName}}</a>
             </div>
             <a-menu slot="overlay">
               <a-menu-item key="1">
@@ -28,11 +31,17 @@
 
     <!-- layout content -->
     <a-layout-content>
-      <div class="left-menus" :style="{width:collapsed ? '60px' : '220px'}">
+      <div class="left-menus"
+           :style="{width:collapsed ? '60px' : '220px'}">
         <Menus mode="inline"></Menus>
-        <div class="tootip" @click="collapseExpand">
-          <a-icon v-if="!collapsed" class="icon" type="left" />
-          <a-icon v-else class="icon" type="right" />
+        <div class="tootip"
+             @click="collapseExpand">
+          <a-icon v-if="!collapsed"
+                  class="icon"
+                  type="left" />
+          <a-icon v-else
+                  class="icon"
+                  type="right" />
         </div>
       </div>
       <div class="main-con">
@@ -62,8 +71,8 @@ import { GlobalHeader, Menus } from "@/components/GlobalHeader";
     AMenuItem: Menu.Item,
     AMenuDivider: Menu.Divider,
     ASelect: Select,
-    ASelectOption: Select.Option
-  }
+    ASelectOption: Select.Option,
+  },
 })
 export default class VerticalBasicLayout extends Vue {
   @Inject() reload!: any;
@@ -100,15 +109,13 @@ export default class VerticalBasicLayout extends Vue {
       class: "my-modal",
       cancelText: "取消",
       onOk: async () => {
-        let { code } = await logout({});
-        if (code == 200) {
-          sessionStorage.clear();
-          this.$router.push("/login");
-        }
+        let { data } = await logout({});
+        sessionStorage.clear();
+        this.$router.push("/login");
       },
       onCancel: () => {
         console.log("Cancel");
-      }
+      },
     });
   }
 }

@@ -7,8 +7,10 @@
         <div class="user-info">
           <a-dropdown>
             <div>
-              <img src="../assets/user.png" class="user-head" />
-              <a @click="e => e.preventDefault()" class="user-name">{{userName}}</a>
+              <img src="../assets/user.png"
+                   class="user-head" />
+              <a @click="e => e.preventDefault()"
+                 class="user-name">{{userName}}</a>
             </div>
             <a-menu slot="overlay">
               <a-menu-item key="0">
@@ -52,7 +54,7 @@ import { Layout, Dropdown, Menu, Icon, Modal } from "ant-design-vue";
     AMenu: Menu,
     AMenuItem: Menu.Item,
     AMenuDivider: Menu.Divider,
-  }
+  },
 })
 export default class LevelBasicLayout extends Vue {
   @Ref() readonly updatePass!: UpdatePass;
@@ -79,15 +81,13 @@ export default class LevelBasicLayout extends Vue {
       class: "my-modal",
       cancelText: "取消",
       onOk: async () => {
-        let { code } = await logout({});
-        if (code == 200) {
-          sessionStorage.clear();
-          this.$router.push("/login");
-        }
+        let { data } = await logout({});
+        sessionStorage.clear();
+        this.$router.push("/login");
       },
       onCancel: () => {
         console.log("Cancel");
-      }
+      },
     });
   }
 }

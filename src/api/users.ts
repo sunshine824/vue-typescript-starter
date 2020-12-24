@@ -1,9 +1,10 @@
-import { Post, Get } from "@/utils/fetch"
+import service from "@/utils/fetch"
 import qs from 'qs'
 
 //用户登录
-export const login = (params: any) => {
-  return Post({
+export const login = (params: any): any => {
+  return service({
+    method: "post",
     url: '/login',
     data: params
   })
@@ -11,7 +12,8 @@ export const login = (params: any) => {
 
 //用户登出
 export const logout = (params: any) => {
-  return Get({
+  return service({
+    method: "get",
     url: '/logout',
     data: params
   })
@@ -19,7 +21,8 @@ export const logout = (params: any) => {
 
 //获取权限列表
 export const getPermissionsList = (params: any) => {
-  return Get({
+  return service({
+    method: "get",
     url: "/navPerson",
     data: qs.stringify(params)
   })
