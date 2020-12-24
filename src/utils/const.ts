@@ -7,26 +7,18 @@
  */
 
 //定义分页类
-export class Pagination implements StoreState.Pagination {
-  public position = "bottom";
-  public pageSize = 10;
-  public total = 0;
-  public showTotal = (total: number) => `总 ${total} 条`;
-
-  constructor({ position = "bottom", pageSize = 10, total = 0 }) {
-    this.position = position;
-    this.pageSize = pageSize;
-    this.total = total;
+export class Pagination {
+  private Page: StoreState.Pagination = {
+    position: 'bottom',
+    current: 1,
+    pageSize: 10,
+    total: 0,
+    showTotal: (total: number) => `总 ${total} 条`
   }
-
-  init() {
-    return {
-      position: this.position,
-      pageSize: this.pageSize,
-      total: this.total,
-      showTotal: this.showTotal
-    };
+  constructor(params: StoreState.Pagination) {
+    Object.assign(this.Page, params)
   }
+  init() { return this.Page }
 }
 
 //定义model公共属性
@@ -36,6 +28,6 @@ export const ModelProps = {
 
 //定义国际化
 export const Languages = [
-  { value: "zh", label: "country.chinese"},
-  { value: "en", label: "country.english"}
+  { value: "zh", label: "country.chinese" },
+  { value: "en", label: "country.english" }
 ];

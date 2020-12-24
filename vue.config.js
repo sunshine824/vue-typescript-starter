@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const productionGzipExtensions = ['js', 'css']
 
-function resolve(dir) {
+function resolve (dir) {
   return path.join(__dirname, dir)
 }
 
@@ -17,6 +17,7 @@ let plugins = [
 if (isProd) {
   plugins.push(
     new CompressionWebpackPlugin({
+      filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
       threshold: 10240,

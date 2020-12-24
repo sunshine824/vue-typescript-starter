@@ -46,10 +46,10 @@ declare namespace StoreState {
   //分页参数
   export interface Pagination {
     current?: number;
-    position: string;
-    pageSize: number;
-    total: number;
-    showTotal: (total: number, range: [number, number]) => any;
+    position?: string;
+    pageSize?: number;
+    total?: number;
+    showTotal?: (total: number, range: [number, number]) => any;
   }
 
   //视频配置
