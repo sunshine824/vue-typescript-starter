@@ -33,7 +33,7 @@
     <a-layout-content>
       <div class="left-menus"
            :style="{width:collapsed ? '60px' : '220px'}">
-        <Menus mode="inline"></Menus>
+        <menus mode="inline"></menus>
         <div class="tootip"
              @click="collapseExpand">
           <a-icon v-if="!collapsed"
@@ -163,6 +163,7 @@ export default class VerticalBasicLayout extends Vue {
       background: #fff;
       margin: 10px 10px 0 10px;
       box-shadow: 0 1px 20px #c6c4c4;
+      overflow: hidden;
     }
   }
   .user-info {

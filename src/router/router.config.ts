@@ -13,7 +13,7 @@ const mainRoutes: RouteConfig = {
   path: '/',
   name: 'home',
   redirect: '/login',
-  component: VerticalBasicLayout,
+  component: LevelBasicLayout,
   children: [
     {
       path: '/404',

@@ -5,6 +5,14 @@
       <template slot="rightCon">
         <menus></menus>
         <div class="user-info">
+          <a-select :default-value="lang"
+                    size="small"
+                    @change="toggleChangeLang"
+                    class="lang-box">
+            <a-select-option v-for="(item, index) in Languages"
+                             :value="item.value"
+                             :key="item.value">{{$t(item.label)}}</a-select-option>
+          </a-select>
           <a-dropdown>
             <div>
               <img src="../assets/user.png"
@@ -37,11 +45,12 @@
 </template>
 
 <script lang="ts">
+import { Languages } from "@/utils/const";
 import { logout } from "@/api/users";
-import { Component, Vue, Ref } from "vue-property-decorator";
+import { Component, Vue, Ref, Inject } from "vue-property-decorator";
 import { GlobalHeader, Menus } from "@/components/GlobalHeader";
 import UpdatePass from "@/views/user/model/updatePass.vue";
-import { Layout, Dropdown, Menu, Icon, Modal } from "ant-design-vue";
+import { Layout, Dropdown, Menu, Icon, Modal, Select } from "ant-design-vue";
 
 @Component({
   components: {
@@ -54,15 +63,25 @@ import { Layout, Dropdown, Menu, Icon, Modal } from "ant-design-vue";
     AMenu: Menu,
     AMenuItem: Menu.Item,
     AMenuDivider: Menu.Divider,
+    ASelect: Select,
+    ASelectOption: Select.Option,
   },
 })
 export default class LevelBasicLayout extends Vue {
   @Ref() readonly updatePass!: UpdatePass;
+  @Inject() reload!: any;
+  private Languages: { value: string; label: string }[] = Languages;
+  private lang: string = sessionStorage.getItem("LANGUAGE") as string;
 
   private goToHome() {
     this.$router.push("/");
   }
-
+  //切换语言
+  private toggleChangeLang(val: string) {
+    this.$i18n.locale = val;
+    sessionStorage.setItem("LANGUAGE", val);
+    this.reload();
+  }
   //显示修改密码框
   private handlePass() {
     this.updatePass.show();
@@ -106,6 +125,22 @@ export default class LevelBasicLayout extends Vue {
     flex-flow: row nowrap;
     align-items: center;
     justify-content: flex-end;
+    .lang-box {
+      width: 80px;
+      margin-right: 10px;
+      &.ant-select {
+        font-size: 12px;
+      }
+      .ant-select-selection {
+        background: transparent;
+        border: 1px solid #a7a5a5;
+        color: #fff;
+      }
+      .ant-select-arrow {
+        color: #fff;
+        font-size: 10px;
+      }
+    }
     .ant-dropdown-trigger {
       height: 54px;
       line-height: 54px;

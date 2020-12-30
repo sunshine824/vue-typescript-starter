@@ -1,20 +1,23 @@
 <template>
   <div :class="['menu-class', mode+'-menu-class']">
-    <a-menu
-      theme="dark"
-      :selected-keys="[activeRoute]"
-      :default-open-keys="!collapsed ? openKeys : []"
-      @click="handleMenuItem"
-      :mode="mode"
-      :inline-collapsed="collapsed"
-      :style="{ lineHeight: '54px' }"
-    >
+    <a-menu theme="dark"
+            :selected-keys="[activeRoute]"
+            :default-open-keys="openKeys"
+            @click="handleMenuItem"
+            :mode="mode"
+            :inline-collapsed="collapsed"
+            :style="{ lineHeight: '54px' }">
       <template v-for="menu in menuLists">
-        <a-menu-item v-if="!menu.children || !menu.children.length" :key="menu.path">
-          <span v-if="menu.meta['icon']" :class="['iconfont', menu.meta['icon'], 'menu-icon']"></span>
+        <a-menu-item v-if="!menu.children || !menu.children.length"
+                     :key="menu.path">
+          <span v-if="menu.meta['icon']"
+                :class="['iconfont', menu.meta['icon'], 'menu-icon']"></span>
           <span>{{$t(menu.meta['title'])}}</span>
         </a-menu-item>
-        <sub-menu v-else :menu="menu" :transferI18n="transferI18n" :key="menu.path"></sub-menu>
+        <sub-menu v-else
+                  :menu="menu"
+                  :transferI18n="transferI18n"
+                  :key="menu.path"></sub-menu>
       </template>
     </a-menu>
   </div>
@@ -32,33 +35,38 @@ import SubMenu from "./SubMenu.vue";
     AMenu: Menu,
     AMenuItem: Menu.Item,
     ASubMenu: Menu.SubMenu,
-    SubMenu
-  }
+    SubMenu,
+  },
 })
 export default class Menus extends Vue {
   @Prop({
     type: String,
     required: false,
-    default: "horizontal"
+    default: "horizontal",
   })
   mode!: string;
 
   //inital data
   private activeRoute: string = "";
   private menus: RouteConfig[] = [];
-  private openKeys: string[] = ["/smart", "/eoms", "/system", "/database"];
 
   mounted() {
     this.getMenus();
     this.routeChange(this.$route, this.$route);
   }
-
   //inital computed
+  get openKeys() {
+    if (this.mode == "inline" && !this.collapsed) {
+      return ["/smart", "/eoms", "/system", "/database"];
+    } else {
+      return [];
+    }
+  }
   get collapsed(): boolean {
     return CommonModule.getCollapsed;
   }
   get menuLists() {
-    return this.menus.filter(item => {
+    return this.menus.filter((item) => {
       return !item.meta["hidden"];
     });
   }
