@@ -1,14 +1,19 @@
 <template>
   <route-layout :isSubView="false">
     <div class="video-group">
-      <div class="video-player-pie" v-for="(item, index) in videos" :key="index">
+      <div class="video-player-pie"
+           v-for="(item, index) in videos"
+           :key="index">
         <div class="title">
           <p class="txt">{{item.title}}</p>
         </div>
         <div class="video-con">
-          <flv-player v-if="item.type == 'flv'" :src="item.src"></flv-player>
-          <hls-player v-if="item.type == 'hls'" :src="item.src"></hls-player>
-          <rtmp-player v-if="item.type == 'rtmp'" :src="item.src"></rtmp-player>
+          <flv-player v-if="item.type == 'flv'"
+                      :src="item.src"></flv-player>
+          <hls-player v-if="item.type == 'hls'"
+                      :src="item.src"></hls-player>
+          <rtmp-player v-if="item.type == 'rtmp'"
+                       :src="item.src"></rtmp-player>
         </div>
       </div>
     </div>
@@ -23,7 +28,7 @@ import { RouteLayout } from "@/layouts";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({
-  components: { RouteLayout, FlvPlayer, HlsPlayer, RtmpPlayer }
+  components: { RouteLayout, FlvPlayer, HlsPlayer, RtmpPlayer },
 })
 export default class System extends Vue {
   private videos = [
@@ -31,24 +36,24 @@ export default class System extends Vue {
       type: "flv",
       title: "flv视频流",
       src:
-        "http://192.168.1.20:30030/video/d0eb09f2745f3850c0559a45f6abd93c_20200923105717.flv"
+        "http://192.168.1.20:30030/video/d0eb09f2745f3850c0559a45f6abd93c_20200923105717.flv",
     },
     {
       type: "hls",
       title: "hls视频流",
-      src: "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8"
+      src: "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8",
     },
     {
       type: "rtmp",
       title: "rtmp视频流",
-      src: "rtmp://media3.sinovision.net:1935/live/livestream"
+      src: "rtmp://media3.sinovision.net:1935/live/livestream",
     },
     {
       type: "flv",
       title: "flv视频流",
       src:
-        "http://192.168.1.20:30030/video/d0eb09f2745f3850c0559a45f6abd93c_20200923105717.flv"
-    }
+        "http://192.168.1.20:30030/video/d0eb09f2745f3850c0559a45f6abd93c_20200923105717.flv",
+    },
   ];
 }
 </script>
@@ -58,7 +63,7 @@ export default class System extends Vue {
     .video-js {
       width: 100%;
     }
-    .vjs-big-play-button{
+    .vjs-big-play-button {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
