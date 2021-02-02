@@ -8,7 +8,7 @@
                     size="small"
                     @change="toggleChangeLang"
                     class="lang-box">
-            <a-select-option v-for="(item, index) in Languages"
+            <a-select-option v-for="(item) in Languages"
                              :value="item.value"
                              :key="item.value">{{$t(item.label)}}</a-select-option>
           </a-select>
@@ -52,12 +52,12 @@
 </template>
 
 <script lang="ts">
-import { Languages } from "@/utils/const";
-import { logout } from "@/api/users";
-import { CommonModule } from "@/store/modules/common";
-import { Component, Vue, Inject } from "vue-property-decorator";
-import { Layout, Dropdown, Menu, Icon, Modal, Select } from "ant-design-vue";
-import { GlobalHeader, Menus } from "@/components/GlobalHeader";
+import { Languages } from '@/utils/const';
+import { logout } from '@/api/users';
+import { CommonModule } from '@/store/modules/common';
+import { Component, Vue, Inject } from 'vue-property-decorator';
+import { Layout, Dropdown, Menu, Icon, Modal, Select } from 'ant-design-vue';
+import { GlobalHeader, Menus } from '@/components/GlobalHeader';
 
 @Component({
   components: {
@@ -76,45 +76,51 @@ import { GlobalHeader, Menus } from "@/components/GlobalHeader";
 })
 export default class VerticalBasicLayout extends Vue {
   @Inject() reload!: any;
+
   private Languages: { value: string; label: string }[] = Languages;
-  private lang: string = sessionStorage.getItem("LANGUAGE") as string;
+
+  private lang: string = sessionStorage.getItem('LANGUAGE') as string;
 
   get userName() {
-    let userInfo = sessionStorage.getItem("userInfo");
-    return userInfo ? JSON.parse(userInfo).username : "admin";
+    const userInfo = sessionStorage.getItem('userInfo');
+    return userInfo ? JSON.parse(userInfo).username : 'admin';
   }
+
   get collapsed(): boolean {
     return CommonModule.getCollapsed;
   }
 
-  //切换语言
+  // 切换语言
   private toggleChangeLang(val: string) {
     this.$i18n.locale = val;
-    sessionStorage.setItem("LANGUAGE", val);
+    sessionStorage.setItem('LANGUAGE', val);
     this.reload();
   }
-  //修改展开收缩状态
+
+  // 修改展开收缩状态
   private collapseExpand() {
     CommonModule.setCollapsedState(!this.collapsed);
   }
-  //返回主页
+
+  // 返回主页
   private goToHome() {
-    this.$router.push("/");
+    this.$router.push('/');
   }
-  //用户登出
+
+  // 用户登出
   private userLoyout() {
     Modal.confirm({
-      title: "确定进行[退出]操作?",
-      okText: "确定",
-      class: "my-modal",
-      cancelText: "取消",
+      title: '确定进行[退出]操作?',
+      okText: '确定',
+      class: 'my-modal',
+      cancelText: '取消',
       onOk: async () => {
-        let { data } = await logout({});
+        await logout({});
         sessionStorage.clear();
-        this.$router.push("/login");
+        this.$router.push('/login');
       },
       onCancel: () => {
-        console.log("Cancel");
+        console.log('Cancel');
       },
     });
   }

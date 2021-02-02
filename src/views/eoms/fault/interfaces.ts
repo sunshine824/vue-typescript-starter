@@ -1,5 +1,5 @@
-export module FaultInterface {
+export namespace FaultInterface {
   export interface TableParams {
-    guid: string
+    guid: string;
   }
 }

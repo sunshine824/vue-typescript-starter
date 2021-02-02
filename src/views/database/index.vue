@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import { RouteLayout } from "@/layouts";
-import { Component, Vue } from "vue-property-decorator";
+import { RouteLayout } from '@/layouts';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
-  components: { RouteLayout }
+  components: { RouteLayout },
 })
 export default class DataBase extends Vue {}
 </script>

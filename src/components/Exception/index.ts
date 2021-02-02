@@ -1,2 +1,3 @@
-import ExceptionPage from './ExceptionPage.vue'
-export default ExceptionPage
+import ExceptionPage from './ExceptionPage.vue';
+
+export default ExceptionPage;

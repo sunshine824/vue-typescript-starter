@@ -1,0 +1,4 @@
+node_modules/*
+public/*
+src/components/GlobalBg.vue
+vue.config.js

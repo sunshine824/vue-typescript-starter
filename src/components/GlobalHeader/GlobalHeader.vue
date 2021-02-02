@@ -1,7 +1,8 @@
 <template>
   <div class="header-animat">
     <a-layout-header>
-      <div class="logo" @click="goToHome">
+      <div class="logo"
+           @click="goToHome">
         <img src="../../assets/logo.png" />
         <span class="txt">{{$t('home.title')}}</span>
       </div>
@@ -13,18 +14,17 @@
 </template>
 
 <script lang="ts">
-import { RouteConfig, Route } from "vue-router";
-import { Component, Vue, Watch, Emit } from "vue-property-decorator";
-import { Layout, Menu, Dropdown } from "ant-design-vue";
+import { Component, Vue, Emit } from 'vue-property-decorator';
+import { Layout } from 'ant-design-vue';
 
 @Component({
   components: {
-    ALayoutHeader: Layout.Header
-  }
+    ALayoutHeader: Layout.Header,
+  },
 })
 export default class GlobalHeader extends Vue {
-  //跳转到home
-  @Emit("goToHome")
+  // 跳转到home
+  @Emit('goToHome')
   goToHome() {}
 }
 </script>

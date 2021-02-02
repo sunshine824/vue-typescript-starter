@@ -6,7 +6,7 @@
  * @LastEditTime: 2020-11-27 10:09:24
  */
 declare namespace StoreState {
-  //接口返回结构
+  // 接口返回结构
   export interface Result {
     code: number;
     data: any;
@@ -14,14 +14,14 @@ declare namespace StoreState {
     msg: string;
   }
 
-  //请求参数结构
+  // 请求参数结构
   export interface FetchParams {
     url: string;
     data: object | string;
     [propName: string]: any;
   }
 
-  //权限返回实体
+  // 权限返回实体
   export interface Role {
     icon?: string;
     list?: Role[];
@@ -33,7 +33,7 @@ declare namespace StoreState {
     [propName: string]: any;
   }
 
-  //layout布局
+  // layout布局
   export interface Layout {
     labelCol: {
       span: number;
@@ -43,7 +43,7 @@ declare namespace StoreState {
     };
   }
 
-  //分页参数
+  // 分页参数
   export interface Pagination {
     current?: number;
     position?: string;
@@ -52,20 +52,20 @@ declare namespace StoreState {
     showTotal?: (total: number, range: [number, number]) => any;
   }
 
-  //视频配置
+  // 视频配置
   export interface VideoConfig {
     type?: string;
     url: string;
     id: string;
   }
 
-  //列表mixin
+  // 列表mixin
   export interface TableMixinOptions {
     queryTableApi: ({ }) => any;
     deleteApi: ({ }) => any;
   }
 
-  //列表查询参数
+  // 列表查询参数
   export interface TableQueryOptions {
     orgId?: string;
     pageNo: number;

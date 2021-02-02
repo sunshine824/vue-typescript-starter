@@ -1,19 +1,19 @@
-import { message } from "ant-design-vue";
-import notification from "ant-design-vue/es/notification";
+import { message } from 'ant-design-vue';
+import notification from 'ant-design-vue/es/notification';
 
-const Message = options => {
+const Message = (options) => {
   message.destroy();
   message[options.type](options);
 };
 
-const Notification = options => {
+const Notification = (options) => {
   notification.destroy();
   notification[options.type](options);
 };
 
-["success", "info", "warning", "error", "loading"].forEach(type => {
-  Message[type] = options => {
-    if (typeof options === "string") {
+['success', 'info', 'warning', 'error', 'loading'].forEach((type) => {
+  Message[type] = (options) => {
+    if (typeof options === 'string') {
       options = {
         content: options
       };
@@ -23,12 +23,12 @@ const Notification = options => {
   };
 });
 
-["success", "info", "warning", "error", "loading", "warn", "open"].forEach(
-  type => {
-    Notification[type] = options => {
-      if (typeof options === "string") {
+['success', 'info', 'warning', 'error', 'loading', 'warn', 'open'].forEach(
+  (type) => {
+    Notification[type] = (options) => {
+      if (typeof options === 'string') {
         options = {
-          message: "温馨提示",
+          message: '温馨提示',
           description: options
         };
       }

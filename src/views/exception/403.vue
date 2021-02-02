@@ -3,13 +3,13 @@
 </template>
 
 <script lang="ts">
-import ExceptionPage from "@/components/Exception";
-import { Component, Vue } from "vue-property-decorator";
+import ExceptionPage from '@/components/Exception';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   components: {
-    ExceptionPage
-  }
+    ExceptionPage,
+  },
 })
 export default class Exception403 extends Vue {}
 </script>

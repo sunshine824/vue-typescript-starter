@@ -1,22 +1,25 @@
 <template>
-  <video class="video-item" controls ref="flvPlayerElem" muted></video>
+  <video class="video-item"
+         controls
+         ref="flvPlayerElem"
+         muted></video>
 </template>
 
 <script lang="ts">
-import flv from "flv.js";
-import { message } from "ant-design-vue";
-import { Component, Vue, Prop, Ref } from "vue-property-decorator";
+import flv from 'flv.js';
+import { message } from 'ant-design-vue';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class FlvPlayer extends Vue {
   @Prop({ type: String }) src!: string;
 
-  //inital data
-  //初始化视频实例
+  // inital data
+  // 初始化视频实例
   private player: flv.Player = flv.createPlayer(
     {
-      type: "flv",
-      url: this.src
+      type: 'flv',
+      url: this.src,
     },
     {
       enableStashBuffer: false,
@@ -25,41 +28,43 @@ export default class FlvPlayer extends Vue {
       lazyLoadMaxDuration: 0,
       lazyLoadRecoverDuration: 0,
       deferLoadAfterSourceOpen: false,
-      fixAudioTimestampGap: false
+      fixAudioTimestampGap: false,
     }
   );
-  //音量开始状态
-  private muted: boolean = true;
-  //是否现在播放
-  private playing: boolean = false;
+
+  // 音量开始状态
+  private muted = true;
+
+  // 是否现在播放
+  private playing = false;
 
   mounted() {
-    //当前浏览器是否支持
-    let isSupported: boolean = flv.isSupported();
+    // 当前浏览器是否支持
+    const isSupported: boolean = flv.isSupported();
     if (!isSupported) {
-      message.error("当前浏览器不支持播放flv视频！");
+      message.error('当前浏览器不支持播放flv视频！');
     } else {
-      let videoElem = this.$refs["flvPlayerElem"] as HTMLMediaElement;
+      const videoElem = this.$refs.flvPlayerElem as HTMLMediaElement;
       this.player.attachMediaElement(videoElem);
       this.player.load();
       this.play();
     }
   }
 
-  //inital methods
-  //视频播放
+  // inital methods
+  // 视频播放
   play() {
     this.player.play();
     this.playing = true;
   }
 
-  //视频暂停
+  // 视频暂停
   pause() {
     this.player.pause();
     this.playing = false;
   }
 
-  //视频销毁
+  // 视频销毁
   destory() {
     this.player.destroy();
     this.playing = false;

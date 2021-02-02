@@ -25,10 +25,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Mixins } from "vue-property-decorator";
-import { Table, Divider } from "ant-design-vue";
-import { FaultInterface } from "../fault/interfaces";
-import TableMixin from "@/mixins/table";
+import { Component, Mixins } from 'vue-property-decorator';
+import { Table, Divider } from 'ant-design-vue';
+import TableMixin from '@/mixins/table';
 
 @Component({
   components: {
@@ -37,81 +36,82 @@ import TableMixin from "@/mixins/table";
   },
 })
 export default class Fault extends Mixins(TableMixin) {
-  //table mixins参数
+  // table mixins参数
   mixinOptions: StoreState.TableMixinOptions = {
     queryTableApi: () => {},
     deleteApi: () => {},
   };
+
   private columns: object[] = [
     {
-      title: "序号",
-      dataIndex: "index",
-      key: "index",
+      title: '序号',
+      dataIndex: 'index',
+      key: 'index',
       width: 60,
-      //根据宽度自动省略
+      // 根据宽度自动省略
       ellipsis: true,
-      align: "center",
-      scopedSlots: { customRender: "index" },
+      align: 'center',
+      scopedSlots: { customRender: 'index' },
     },
     {
-      title: "设备名称",
+      title: '设备名称',
       width: 150,
       ellipsis: true,
-      align: "center",
-      dataIndex: "deviceName",
-      key: "deviceName",
+      align: 'center',
+      dataIndex: 'deviceName',
+      key: 'deviceName',
     },
     {
-      title: "设备SN",
+      title: '设备SN',
       width: 180,
       ellipsis: true,
-      align: "center",
-      dataIndex: "sn",
-      key: "sn",
+      align: 'center',
+      dataIndex: 'sn',
+      key: 'sn',
     },
     {
-      title: "MAC",
-      align: "center",
+      title: 'MAC',
+      align: 'center',
       width: 200,
       ellipsis: true,
-      dataIndex: "mac",
-      key: "mac",
+      dataIndex: 'mac',
+      key: 'mac',
     },
     {
-      title: "组织架构",
-      align: "center",
+      title: '组织架构',
+      align: 'center',
       width: 180,
       ellipsis: true,
-      dataIndex: "orgName",
-      key: "orgName",
+      dataIndex: 'orgName',
+      key: 'orgName',
     },
     {
-      title: "网络组名称",
-      align: "center",
+      title: '网络组名称',
+      align: 'center',
       width: 150,
       ellipsis: true,
-      dataIndex: "groupName",
-      key: "groupName",
+      dataIndex: 'groupName',
+      key: 'groupName',
     },
     {
-      title: "负责人",
-      align: "center",
+      title: '负责人',
+      align: 'center',
       width: 150,
       ellipsis: true,
-      dataIndex: "createName",
-      key: "createName",
+      dataIndex: 'createName',
+      key: 'createName',
     },
     {
-      title: "操作",
-      align: "center",
-      dataIndex: "operation",
-      key: "operation",
+      title: '操作',
+      align: 'center',
+      dataIndex: 'operation',
+      key: 'operation',
       width: 220,
-      scopedSlots: { customRender: "operation" },
+      scopedSlots: { customRender: 'operation' },
     },
   ];
 
-  //删除
+  // 删除
   private deleteOut(row: any) {
     this.handleDetele({
       guid: row.guid,

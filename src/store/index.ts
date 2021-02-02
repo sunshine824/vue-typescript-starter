@@ -1,11 +1,11 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import { IUserState } from "./modules/user";
+import Vue from 'vue';
+import Vuex from 'vuex';
+import { UserState } from './modules/user';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-export interface IRootState {
-  user: IUserState;
+export interface RootState {
+  user: UserState;
 }
 
-export default new Vuex.Store<IRootState>({})
+export default new Vuex.Store<RootState>({});

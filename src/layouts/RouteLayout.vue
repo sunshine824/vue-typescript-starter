@@ -11,21 +11,21 @@
 </template>
 
 <script lang="ts">
-import { Route } from "vue-router";
-import { Component, Vue, Watch, Prop } from "vue-property-decorator";
+import { Route } from 'vue-router';
+import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 
 @Component
 export default class RouteLayout extends Vue {
   @Prop({
     type: Boolean,
-    default: true
+    default: true,
   })
-  isSubView!: Boolean;
+  isSubView!: boolean;
 
   private routeOptions: object = this.$route.meta;
 
-  @Watch("$route")
-  changeRoute(val: Route, oldVal?: Route) {
+  @Watch('$route')
+  changeRoute(val: Route) {
     this.routeOptions = val.meta;
   }
 }
@@ -48,7 +48,7 @@ export default class RouteLayout extends Vue {
       align-items: center;
       margin-bottom: 0;
       &::before {
-        content: "";
+        content: '';
         width: 4px;
         height: 24px;
         background: #1890ff;

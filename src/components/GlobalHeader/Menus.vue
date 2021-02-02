@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
-import { CommonModule } from "@/store/modules/common";
-import { RouteConfig, Route } from "vue-router";
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { Layout, Menu, Dropdown } from "ant-design-vue";
-import SubMenu from "./SubMenu.vue";
+import { CommonModule } from '@/store/modules/common';
+import { RouteConfig, Route } from 'vue-router';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Menu } from 'ant-design-vue';
+import SubMenu from './SubMenu.vue';
 
 @Component({
   components: {
@@ -42,60 +42,62 @@ export default class Menus extends Vue {
   @Prop({
     type: String,
     required: false,
-    default: "horizontal",
+    default: 'horizontal',
   })
   mode!: string;
 
-  //inital data
-  private activeRoute: string = "";
+  // inital data
+  private activeRoute = '';
+
   private menus: RouteConfig[] = [];
 
   mounted() {
     this.getMenus();
-    this.routeChange(this.$route, this.$route);
+    this.routeChange(this.$route);
   }
-  //inital computed
+
+  // inital computed
   get openKeys() {
-    if (this.mode == "inline" && !this.collapsed) {
-      return ["/smart", "/eoms", "/system", "/database"];
-    } else {
-      return [];
+    if (this.mode == 'inline' && !this.collapsed) {
+      return ['/smart', '/eoms', '/system', '/database'];
     }
+    return [];
   }
+
   get collapsed(): boolean {
     return CommonModule.getCollapsed;
   }
+
   get menuLists() {
-    return this.menus.filter((item) => {
-      return !item.meta["hidden"];
-    });
-  }
-  get transferI18n() {
-    return (val: string) => {
-      return this.$t(val);
-    };
+    return this.menus.filter((item) => !item.meta.hidden);
   }
 
-  //获取路由列表
+  get transferI18n() {
+    return (val: string) => this.$t(val);
+  }
+
+  // 获取路由列表
   private getMenus() {
-    let routes = this.$router.options.routes || [];
-    routes.map((item: any) => {
-      if (item.path == "/") {
+    const routes = this.$router.options.routes || [];
+    routes.forEach((item: any) => {
+      if (item.path == '/') {
         this.menus = item.children;
       }
     });
   }
-  //路由跳转
+
+  // 路由跳转
   private handleMenuItem(item: any) {
     this.$router.push(item.key);
   }
-  //监听点击标题事件
-  private titleClick({ key, domEvent }: { key: string; domEvent: any }) {
+
+  // 监听点击标题事件
+  private titleClick({ key }: { key: string }) {
     this.$router.push(key);
   }
 
-  @Watch("$route")
-  routeChange(val: Route, oldVal: Route): void {
+  @Watch('$route')
+  routeChange(val: Route): void {
     this.activeRoute = val.path;
   }
 }
@@ -147,7 +149,7 @@ export default class Menus extends Vue {
           color: rgba(255, 255, 255, 0.9);
           border-bottom: none;
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             bottom: 0;
             height: 3px;
@@ -182,7 +184,7 @@ export default class Menus extends Vue {
           color: #fff;
         }
         &::after {
-          content: "";
+          content: '';
           position: absolute;
           bottom: 0;
           height: 3px;

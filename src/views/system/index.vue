@@ -21,11 +21,11 @@
 </template>
 
 <script lang="ts">
-import FlvPlayer from "@/components/FlvPlayer.vue";
-import HlsPlayer from "@/components/HlsPlayer.vue";
-import RtmpPlayer from "@/components/RtmpPlayer.vue";
-import { RouteLayout } from "@/layouts";
-import { Component, Vue } from "vue-property-decorator";
+import FlvPlayer from '@/components/FlvPlayer.vue';
+import HlsPlayer from '@/components/HlsPlayer.vue';
+import RtmpPlayer from '@/components/RtmpPlayer.vue';
+import { RouteLayout } from '@/layouts';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   components: { RouteLayout, FlvPlayer, HlsPlayer, RtmpPlayer },
@@ -33,26 +33,26 @@ import { Component, Vue } from "vue-property-decorator";
 export default class System extends Vue {
   private videos = [
     {
-      type: "flv",
-      title: "flv视频流",
+      type: 'flv',
+      title: 'flv视频流',
       src:
-        "http://192.168.1.20:30030/video/d0eb09f2745f3850c0559a45f6abd93c_20200923105717.flv",
+        'http://192.168.1.20:30030/video/d0eb09f2745f3850c0559a45f6abd93c_20200923105717.flv',
     },
     {
-      type: "hls",
-      title: "hls视频流",
-      src: "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8",
+      type: 'hls',
+      title: 'hls视频流',
+      src: 'http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8',
     },
     {
-      type: "rtmp",
-      title: "rtmp视频流",
-      src: "rtmp://media3.sinovision.net:1935/live/livestream",
+      type: 'rtmp',
+      title: 'rtmp视频流',
+      src: 'rtmp://media3.sinovision.net:1935/live/livestream',
     },
     {
-      type: "flv",
-      title: "flv视频流",
+      type: 'flv',
+      title: 'flv视频流',
       src:
-        "http://192.168.1.20:30030/video/d0eb09f2745f3850c0559a45f6abd93c_20200923105717.flv",
+        'http://192.168.1.20:30030/video/d0eb09f2745f3850c0559a45f6abd93c_20200923105717.flv',
     },
   ];
 }

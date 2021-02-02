@@ -1,7 +1,8 @@
 <template>
   <div class="exception">
     <div class="imgBlock">
-      <div class="imgEle" :style="{backgroundImage: `url(${config[type].img})`}"></div>
+      <div class="imgEle"
+           :style="{backgroundImage: `url(${config[type].img})`}"></div>
     </div>
     <div class="content">
       <h1>{{ config[type].title }}</h1>
@@ -11,26 +12,27 @@
 </template>
 
 <script lang="ts">
-import types from "./type";
-import { Component, Vue, Watch, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import types from './type';
 
 @Component
 export default class ExceptionPage extends Vue {
   @Prop({
     type: String,
     required: false,
-    default: "404"
+    default: '404',
   })
   type!: string;
 
   private config: object = types;
+
   private handleToHome() {
-    this.$router.push("/");
+    this.$router.push('/');
   }
 }
 </script>
 <style lang="less">
-@import "~ant-design-vue/lib/style/index";
+@import '~ant-design-vue/lib/style/index';
 
 .exception {
   display: flex;
@@ -45,7 +47,7 @@ export default class ExceptionPage extends Vue {
     zoom: 1;
     &::before,
     &::after {
-      content: " ";
+      content: ' ';
       display: table;
     }
     &::after {

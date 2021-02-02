@@ -59,14 +59,14 @@
 </template>
 
 <script lang="ts">
-import uuid from "uuid/v1";
-import GlobalBg from "@/components/GlobalBg.vue";
-import { User } from "./interface"; //引入模块接口
-import { setToken } from "@/utils/token";
-import { UserModule } from "@/store/modules/user";
-import { login } from "@/api/users";
-import { Component, Vue } from "vue-property-decorator";
-import { FormModel, Row, Col, Button, Input } from "ant-design-vue";
+import uuid from 'uuid/v1';
+import GlobalBg from '@/components/GlobalBg.vue';
+import { setToken } from '@/utils/token';
+import { UserModule } from '@/store/modules/user';
+import { login } from '@/api/users';
+import { Component, Vue } from 'vue-property-decorator';
+import { FormModel, Row, Col, Button, Input } from 'ant-design-vue';
+import { User } from './interface'; // 引入模块接口
 
 @Component({
   components: {
@@ -82,19 +82,24 @@ import { FormModel, Row, Col, Button, Input } from "ant-design-vue";
 export default class Login extends Vue {
   // initial data
   private labelCol: object = { span: 4 };
+
   private wrapperCol: object = { span: 18, offset: 3 };
-  private captchaPath: string = "";
-  private logo: string = "";
+
+  private captchaPath = '';
+
+  private logo = '';
+
   private dataRule: any = {
-    username: [{ required: true, message: "用户名不能为空", trigger: "blur" }],
-    password: [{ required: true, message: "密码不能为空", trigger: "blur" }],
-    captcha: [{ required: true, message: "验证码不能为空", trigger: "blur" }],
+    username: [{ required: true, message: '用户名不能为空', trigger: 'blur' }],
+    password: [{ required: true, message: '密码不能为空', trigger: 'blur' }],
+    captcha: [{ required: true, message: '验证码不能为空', trigger: 'blur' }],
   };
+
   private dataForm: User.Login = {
-    username: "",
-    password: "",
-    captcha: "",
-    uuid: "",
+    username: '',
+    password: '',
+    captcha: '',
+    uuid: '',
   };
 
   mounted() {
@@ -103,18 +108,18 @@ export default class Login extends Vue {
     });
   }
 
-  //login提交
+  // login提交
   private dataFormSubmit() {
-    (this.$refs["dataForm"] as FormModel).validate(async (valid: boolean) => {
+    (this.$refs.dataForm as FormModel).validate(async (valid: boolean) => {
       if (valid) {
         try {
-          let { data } = await login(this.dataForm);
-          //将token存储到store
+          const { data } = await login(this.dataForm);
+          // 将token存储到store
           UserModule.SET_TOKEN(data.token);
-          //将token存储到sessionStorage
+          // 将token存储到sessionStorage
           setToken(data.token);
-          sessionStorage.setItem("userInfo", JSON.stringify(data["userInfo"]));
-          window.location.href = "/";
+          sessionStorage.setItem('userInfo', JSON.stringify(data.userInfo));
+          window.location.href = '/';
         } catch (error) {
           this.getCaptcha();
         }
@@ -122,7 +127,7 @@ export default class Login extends Vue {
     });
   }
 
-  //加载验证码
+  // 加载验证码
   private getCaptcha() {
     this.dataForm.uuid = uuid();
     this.captchaPath = `/dbd-authority/captcha.jpg?uuid=${this.dataForm.uuid}`;
@@ -158,7 +163,7 @@ export default class Login extends Vue {
     z-index: -1;
     width: 100%;
     height: 100%;
-    content: "";
+    content: '';
     //background-image: url(~@/assets/img/bgc.jpg);
     background-size: cover;
   }

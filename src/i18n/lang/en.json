@@ -12,9 +12,10 @@
   },
   "country": {
     "chinese": "Chinese",
-    "english": "English"
+    "english": "English" 
   },
   "action": {
     "exit": "Exit"
   }
 }
+ 
