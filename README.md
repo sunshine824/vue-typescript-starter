@@ -1,13 +1,13 @@
-
 ### 简介
 
 此项目是基于 Vue 全家桶 + TypeScript + Antd 搭建简易脚手架。
 
-TypeScript 具有类型系统，且是 JavaScript 的超集，TypeScript 在 2018年 势头迅猛，可谓遍地开花。
+TypeScript 具有类型系统，且是 JavaScript 的超集，TypeScript 在 2018 年 势头迅猛，可谓遍地开花。
 
 Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 年 TypeScript 将会更加普及，能够熟练掌握 TS，并使用 TS 开发过项目，将更加成为前端开发者的优势。
 
 ### 目录结构
+
 ```bash
 .
 ├── README.md
@@ -45,11 +45,13 @@ Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 �
 - [x] 修改密码
 - [x] 动态路由
 - [x] 国际化
-- [x] 支持flv，hls，rtmp格式视频播放
+- [x] eslint
+- [x] 支持 flv，hls，rtmp 格式视频播放
 
 #### 如何关闭动态路由
-将 src/router/index.ts 中 DYNROUTER 变量设置为false，即为关闭，反之开启.  
-当DYNROUTER为关闭状态时，路由可配置在router.config.ts的mainRoutes主路由中
+
+将 src/router/index.ts 中 DYNROUTER 变量设置为 false，即为关闭，反之开启.  
+当 DYNROUTER 为关闭状态时，路由可配置在 router.config.ts 的 mainRoutes 主路由中
 
 #### 待优化或者实现
 
@@ -100,6 +102,7 @@ npm run build
 ```
 
 ### 项目截图
+
 <img src="https://github.com/sunshine824/vue-typescript-starter/blob/master/src/assets/screenshot/sreen01.png" width="550" height="300"/>
 <img src="https://github.com/sunshine824/vue-typescript-starter/blob/master/src/assets/screenshot/sreen04.png" width="550" height="300"/>
 <img src="https://github.com/sunshine824/vue-typescript-starter/blob/master/src/assets/screenshot/sreen02.png" width="550" height="300"/>
@@ -107,4 +110,5 @@ npm run build
 由于每个项目呈现内容不同，所以在这里我就只搭建了一个骨架，具体内容自定义。
 
 ### 最后
+
 如果你觉得该项目不错，或者对你有所帮助，点个 Star 、或者真心赞赏一下 都是对我最大的鼓励，我会更有动力维护好该项目
