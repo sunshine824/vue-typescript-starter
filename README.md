@@ -6,6 +6,8 @@ TypeScript 具有类型系统，且是 JavaScript 的超集，TypeScript 在 201
 
 Vue3.0 将使用 TS 重写，重写后的 Vue3.0 将更好的支持 TS。2020 年 TypeScript 将会更加普及，能够熟练掌握 TS，并使用 TS 开发过项目，将更加成为前端开发者的优势。
 
+Vue3.0 版本：<a href="https://github.com/sunshine824/vue3.0-typescript-starter">https://github.com/sunshine824/vue3.0-typescript-starter</a>
+
 ### 目录结构
 
 ```bash

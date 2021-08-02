@@ -31,7 +31,7 @@ const router = new VueRouter({
 function fnAddDynamicMenuRoutes(
   menuList: StoreState.Role[],
   routes: RouteConfig[] = []
-) {
+) { 
   menuList.forEach((item) => {
     if (!item.list) {
       routes.push({
