@@ -1,15 +1,25 @@
 <template>
-  <div id="app">
-    <router-view v-if="isRouterAlive" />
-  </div>
+  <a-config-provider :locale="locale">
+    <div id="app"
+         class="app">
+      <router-view v-if="isRouterAlive" />
+    </div>
+  </a-config-provider>
 </template>
 
 <script lang="ts">
-import { UserModule } from '@/store/modules/user';
-import { Component, Prop, Vue, Provide } from 'vue-property-decorator';
+import locale from 'ant-design-vue/lib/locale-provider/zh_CN';
+import { ConfigProvider } from 'ant-design-vue';
+import { Component, Vue, Provide } from 'vue-property-decorator';
 
-@Component({})
+@Component({
+  components: {
+    AConfigProvider: ConfigProvider,
+  },
+})
 export default class App extends Vue {
+  private locale: any = locale;
+
   private isRouterAlive = true;
 
   mounted() {

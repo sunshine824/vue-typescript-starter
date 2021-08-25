@@ -7,6 +7,9 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import i18n from './i18n';
+import moment from 'moment';
+
+moment.locale('zh-cn');
 
 // 导入视频播放组件
 import 'video.js/dist/video-js.css';
@@ -31,5 +34,5 @@ new Vue({
   router,
   store,
   i18n,
-  render: (h) => h(App)
+  render: h => h(App)
 }).$mount('#app');
